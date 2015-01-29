@@ -8,5 +8,6 @@ def main():
 	print "hello"
 	print "cool"
 	print "hi"
+	print "stupid"
 if __name__ == "__main__":
     main()
