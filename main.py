@@ -7,7 +7,6 @@ from sys import exit
 def main():
 	print "hello"
 	print "cool"
-	print "hi"
-	print "stupid"
+	print "hi"	
 if __name__ == "__main__":
     main()
