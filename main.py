@@ -148,7 +148,7 @@ p4_card_list     = [0] * 5
 all_card_list    = [0] * 52
 
 click_move_y =  30
-first_put       = 1
+first_put = 1
 turn_id = 1
 clicked = 0
 start3c = 1
@@ -190,9 +190,6 @@ def display_desktop_cards(list, num):
 
 def display_num_of_cards(list, num):
     for x in range(0, 5):
-        #print 'num=%d' % num
-        #print num_to_cards(list[x])
-        #print (player_card_rect[x][0], player_card_rect[x][1])
         screen.blit(Back_Card, (player_card_rect[x][0]+60*x+100, player_card_rect[x][1]))
     return
     
@@ -210,27 +207,6 @@ def display_p4_num_of_cards(list, num):
     for x in range(0, 5):
         screen.blit(Back_Cardn90, (p4_card_rect[x][0]+250, 100+100*x))
     return
-
-def ini_random_cards(p_card_list, p_id):
-    global all_card_list
-    global turn_id
-    for x in range(0, 5):
-        start = random.randint(0, 51)
-        i = start
-        while i != -1 :
-            if 0 == all_card_list[start]:
-                if i != 0:
-                    start += 1
-                    start %= 52
-                    i -= 1
-                else:
-                    break
-            else:
-                start += 1
-                start %= 52
-        all_card_list[start] = 1
-        p_card_list[x] = start
-    return p_card_list
         
 def num_to_cards(num):
     if 0==num:
@@ -337,12 +313,6 @@ def num_to_cards(num):
         return P_1h
     if 51==num:
         return P_1s
-def writenum(int=0, color= (255,255,255)):    
-    #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
-    myfont = pygame.font.Font(None,30)
-    mytext = myfont.render(str(int), True, color)
-    mytext = mytext.convert_alpha()
-    return mytext 
 
 def write(msg="pygame is cool", color= (255,255,255)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
@@ -380,51 +350,6 @@ def fill_background():
     for y in range(0, screen_height, background.get_height()):
         for x in range(0, screen_width, background.get_width()):
             screen.blit(background, (x, y))
-def DisplayScores():
-	global Player1Score
-	global Player2Score
-	global Player3Score
-	global Player4Score
-	Player1Score=1
-	Player2Score=2
-	Player3Score=3
-	Player4Score=4
-	screen.blit(background, (0,0))
-	screen.blit(write3("Lets See Who's Winning"),(600,100))
-	screen.blit(write2("Player 1"),(300,200))
-	screen.blit(write2("________"),(300,201))
-	screen.blit(writenum(Player1Score),(310,225))
-	screen.blit(write2("Player 2"),(600,200))
-	screen.blit(write2("________"),(600,201))
-	screen.blit(writenum(Player2Score),(610,225))
-	screen.blit(write2("Player 3"),(900,200))
-	screen.blit(write2("________"),(900,201))
-	screen.blit(writenum(Player3Score),(910,225))
-	screen.blit(write2("Player 4"),(1200,200))
-	screen.blit(write2("________"),(1200,201))
-	screen.blit(writenum(Player4Score),(1210,225))
-	screen.blit(write5("Left Click Mouse to return to game"),(550,400))
-	screen.blit(write5("Hit Space to review instructions"),(600,500))
-	screen.blit(write5("Hit n to start a new game"),(650,600))
-	
-	pygame.display.update()
-	BACK=True;
-	while BACK==True:
-		for event in pygame.event.get():
-			if event.type== QUIT:
-				exit()
-			if event.type==MOUSEBUTTONDOWN:
-				BACK=False
-			if event.type==KEYDOWN:
-				if event.key==K_n:
-					newgame()
-					BACK=False
-				if event.key==K_SPACE:
-					instructions()
-					BACK=False
-				else:
-					BACK=False
-	backtogame()
 def backtogame():
 	global index
 	display_all()
@@ -659,147 +584,6 @@ def instructions():
 					BACK=False
 				else:
 					BACK=False
-def DisplayChoices(num):
-    if num==0:
-	    screen.blit(write("Guess Your Place"),(940,375))
-	    screen.blit(write("1st place"),(975,400))
-	    screen.blit(write("2nd place"), (975,425))
-	    screen.blit(write("3rd place"),(975,450))
-	    screen.blit(write("4th place"),(975,475))
-	    pygame.display.update()
-    if num==1:
-	    screen.blit(write("Guess Your Place"),(940,375))
-	    screen.blit(write2("1st place"),(975,400))
-	    screen.blit(write("2nd place"), (975,425))
-	    screen.blit(write("3rd place"),(975,450))
-	    screen.blit(write("4th place"),(975,475))
-	    pygame.display.update()
-    if num==2:
-	    screen.blit(write("Guess Your Place"),(940,375))
-	    screen.blit(write("1st place"),(975,400))
-	    screen.blit(write2("2nd place"), (975,425))
-	    screen.blit(write("3rd place"),(975,450))
-	    screen.blit(write("4th place"),(975,475))
-	    pygame.display.update()
-    if num==3:
-	    screen.blit(write("Guess Your Place"),(940,375))
-	    screen.blit(write("1st place"),(975,400))
-	    screen.blit(write("2nd place"), (975,425))
-	    screen.blit(write2("3rd place"),(975,450))
-	    screen.blit(write("4th place"),(975,475))
-	    pygame.display.update()
-    if num==4:
-	    screen.blit(write("Guess Your Place"),(940,375))
-	    screen.blit(write("1st place"),(975,400))
-	    screen.blit(write("2nd place"), (975,425))
-	    screen.blit(write("3rd place"),(975,450))
-	    screen.blit(write2("4th place"),(975,475))
-	    pygame.display.update()
-def CardClicked( mouse_x, mouse_y): 
-    global card_clicked_list
-    #global num_of_card
-    global index
-    for i in range(num_of_card-1, -1, -1):
-        if player_card_x + i * P_1c.get_width()/2+60*i+100 <= mouse_x < player_card_x + i * P_1c.get_width()/2 + P_1c.get_width()+60*i+100:
-            if 0 == card_clicked_list[i]:
-                #unclicked the click card
-                if player_card_y <= mouse_y < player_card_y+P_1c.get_height():
-		    DisplayChoices(0)
-                    ShowCard([0,-1], i)
-		    index=i
-                    card_clicked_list[i] = 1
-                    break
-def ChoosePlace():
-	global Player1Score
-	global Player2Score
-	global Player3Score
-	global Player4Score
-	Player1Score=1
-def ShowCard(speed,card_index):
-    global player_card_rect
-    global num_of_card
-    org_y = player_card_rect[card_index][1]
-    #while abs(player_card_rect[card_index][1] - org_y) <= click_move_y:
-    screen.blit(num_to_cards(player_card_list[card_index]), (player_card_rect[card_index][0]+60*card_index+100, player_card_rect[card_index][1]))
-    pygame.display.update()
-def handle_put(player_card_len):
-    global first_put
-    global card_clicked_list
-    global desktop_card_list
-    global num_of_desktop_card
-    global player_card_list
-    global owner
-    put_card_list = [0]*13
-    put_len = 0
-    
-
-    for ci in range(0, player_card_len):
-        if 1 == card_clicked_list[ci]:
-            put_card_list[put_len] = player_card_list[ci]
-            put_len += 1
-    
-    if 5 == put_len and 0 == put_card_list[0]/4 and 1 == put_card_list[1]/4 and 2 == put_card_list[2]/4 and 3 == put_card_list[3]/4 and 12 == put_card_list[4]/4:
-        t = put_card_list[4]
-        for i in range(4, 0, -1):
-            put_card_list[i] = put_card_list[i-1]
-        put_card_list[0] = t
-    
-    if 1 == first_put:
-        if 1 == valid_first_put_card(put_card_list, put_len):
-            owner = 1
-            num_of_desktop_card = put_len
-            for ci in range(0, put_len):
-                desktop_card_list[ci] = put_card_list[ci]
-            for ci in range(0, player_card_len):
-                if 1 == card_clicked_list[ci]:
-                    #print 'ci=%d' % ci
-                    card_clicked_list[ci] = 0
-                    player_card_list[ci] = 100 #put card set to value 100
-            player_card_list.sort()
-            first_put = 0
-            return put_len
-        else:
-            for ci in range(0, player_card_len):
-                if 1 == card_clicked_list[ci]:
-                    ShowCard([0,1],ci)
-                    card_clicked_list[ci] = 0
-            return 0
-    else:
-        if 1 == compare_card(desktop_card_list, num_of_desktop_card, put_card_list, put_len):
-            owner = 1
-            num_of_desktop_card = put_len
-            for ci in range(0, put_len):
-                desktop_card_list[ci] = put_card_list[ci]
-            for ci in range(0, player_card_len):
-                if 1 == card_clicked_list[ci]:
-                    card_clicked_list[ci] = 0
-                    player_card_list[ci] = 100 #put card set to value 100
-            player_card_list.sort()
-            return put_len
-        else:
-            for ci in range(0, player_card_len):
-                if 1 == card_clicked_list[ci]:
-                    ShowCard([0,1],ci)
-                    card_clicked_list[ci] = 0
-            return 0
-def valid_first_put_card(put_card_list, put_len):
-    global start3c
-    s3c = 1 
-    if 1 == start3c:
-        for i in range(0, put_len):
-            if 4 == put_card_list[i]:
-                s3c = 0
-        if 1 == s3c:
-            return -1
-    if 1 == put_len:
-        if one_card(put_card_list, 1) > 0:
-            if 1 == start3c:
-                start3c = 0
-            return 1
-        else:
-            return -1
-    else:
-        return -1
 def main():
     newgame()
     global begin
@@ -863,24 +647,15 @@ def main():
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
-	    if event.type==KEYDOWN:
-		if event.key==27:
-			DisplayScores()
 		if event.key==K_n:
 			newgame()
 		if event.key==K_SPACE:
 			instructions()
-			
             if event.type == MOUSEBUTTONDOWN and begin >0:
                 if event.button == 1 and turn_id == 1:
                     CardClicked(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 		    ChoosePlace()
 		    turn_id=2
-
-
-        #pygame.display.update()
-       # if 0 == num_of_card or 0 == p2_num_of_card or 0 == p3_num_of_card or 0 == p4_num_of_card:
-            #time.sleep(4)
     exit()
 		
 if __name__ == "__main__":
