@@ -4,7 +4,7 @@ import pygame
 from pygame.locals import *
 from sys import exit
 
-background_image_filename = 'Image/blue.jpg'
+background_image_filename = 'Image/test.jpg'
 iP_1c = 'Image/01c.gif'
 iP_1d = 'Image/01d.gif'
 iP_1h = 'Image/01h.gif'
@@ -123,49 +123,6 @@ Back_Card = pygame.image.load(iBack_Card).convert()
 Back_Card90 = pygame.transform.rotate(Back_Card , 90)
 Back_Cardn90 = pygame.transform.rotate(Back_Card , -90)
 
-
-
-num_of_card     = 5
-p2_num_of_card  = 5
-p3_num_of_card  = 5
-p4_num_of_card  = 5
-start_turn = 1
-
-card_clicked_list    = [0] * 5
-p2_card_clicked_list = [0] * 5
-p3_card_clicked_list = [0] * 5
-p4_card_clicked_list = [0] * 5
-player_card_list  = [0] * 5
-player_card_rect  = [[0,0], [0,0], [0,0], [0,0], [0,0]]
-p2_card_rect      = [[0,0], [0,0], [0,0], [0,0], [0,0]]
-p3_card_rect      = [[0,0], [0,0], [0,0], [0,0], [0,0]]
-p4_card_rect      = [[0,0], [0,0], [0,0], [0,0], [0,0]]
-desktop_card_list = [0] * 5
-desktop_card_rect = [[0,0], [0,0], [0,0], [0,0], [0,0]]
-p2_card_list     = [0] * 5
-p3_card_list     = [0] * 5
-p4_card_list     = [0] * 5
-all_card_list    = [0] * 52
-
-click_move_y =  30
-first_put = 1
-turn_id = 1
-clicked = 0
-start3c = 1
-
-num_of_card     = 5
-p2_num_of_card  = 5
-p3_num_of_card  = 5
-p4_num_of_card  = 5
-num_of_desktop_card = 0
-
-
-start_turn_id = turn_id
-owner         = start_turn_id
-screen_width, screen_height = SCREEN_SIZE
-
-winner = 1
-
 def display_all():
     global player_card_x
     global player_card_rect
@@ -190,6 +147,9 @@ def display_desktop_cards(list, num):
 
 def display_num_of_cards(list, num):
     for x in range(0, 5):
+        #print 'num=%d' % num
+        #print num_to_cards(list[x])
+        #print (player_card_rect[x][0], player_card_rect[x][1])
         screen.blit(Back_Card, (player_card_rect[x][0]+60*x+100, player_card_rect[x][1]))
     return
     
@@ -207,6 +167,27 @@ def display_p4_num_of_cards(list, num):
     for x in range(0, 5):
         screen.blit(Back_Cardn90, (p4_card_rect[x][0]+250, 100+100*x))
     return
+
+def ini_random_cards(p_card_list, p_id):
+    global all_card_list
+    global turn_id
+    for x in range(0, 5):
+        start = random.randint(0, 51)
+        i = start
+        while i != -1 :
+            if 0 == all_card_list[start]:
+                if i != 0:
+                    start += 1
+                    start %= 52
+                    i -= 1
+                else:
+                    break
+            else:
+                start += 1
+                start %= 52
+        all_card_list[start] = 1
+        p_card_list[x] = start
+    return p_card_list
         
 def num_to_cards(num):
     if 0==num:
@@ -344,12 +325,13 @@ def write5(msg="pygame is cool", color= (255,0,0)):
     myfont = pygame.font.Font(None,60)
     mytext = myfont.render(msg, True, color)
     mytext = mytext.convert_alpha()
-    return mytext      
+    return mytext     
 
 def fill_background():
     for y in range(0, screen_height, background.get_height()):
         for x in range(0, screen_width, background.get_width()):
             screen.blit(background, (x, y))
+
 def backtogame():
 	global index
 	display_all()
@@ -538,35 +520,27 @@ def instructions():
 	screen.blit(background, (0,0))
 	screen.blit(write2("instructions"),(700,10))
 	screen.blit(write2("__________"),(700,11))
-	screen.blit(write2("Steps:"),(450,60))
-	screen.blit(write2("1) Five cards are dealt to each player face down"),(450,85))
-	screen.blit(write2("2) The player will select one of his cards to view"),(450,110))
-	screen.blit(write2("3) The player selects the place he/she thinks that "),(450,135))
-	screen.blit(write2("the card selected will rank against the other players selected cards"),(475,160))
-	screen.blit(write2("4) The players show and compare cards and see what place their card ranks"),(450,185))
-	screen.blit(write2("5) The players then calculate and record their scores based on scoring table"),(450,210))
-	screen.blit(write2("6) Cards used are set aside and players grab a replacement card from the deck"),(450,235))
-	screen.blit(write2("7) Repeat steps 1-7 until deck runs out where one final round is played"),(450,260))
-	screen.blit(write2("8) Game then ends and player with highest points wins."),(450,285))
-	screen.blit(write2("Notes:"),(450,310))
-	screen.blit(write2("1) Highest card gets first place and lowest card gets last place."),(450,335))
-	screen.blit(write2("2) 2 is considered the lowest card and Ace is considered the highest card."),(450,360))
-	screen.blit(write2("3) In last round players do not need to have all five cards if deck runs out."),(450,385))
-	screen.blit(write2("4) In the case of a tie, players with the same card choose another card out of "),(450,410))
-	screen.blit(write2("their five and the new higher card gets the higher place"),(475,435))
-	screen.blit(write2("5) In last round if a player or players have no more cards to break a tie, the cards suit will determine"),(450,460))
-	screen.blit(write2("the higher place. Suits rank in this order from highest to lowest, Spades, Clubs, Hearts, and Diamonds."),(475,485))
-	screen.blit(write2("6) If there is a tie in points at the end of the game, another round is given with "),(450,510))
-	screen.blit(write2("a reshuffled deck until someone pulls ahead in points"),(475,535))
-	screen.blit(write2("Scoring:"),(450,560))
-	screen.blit(write2("1 point for guessing the correct place"),(500,585))
-	screen.blit(write2("0 points for guessing one place off of the correct place"),(500,610))
-	screen.blit(write2("-1 points for guessing two or more places off"),(500,635))
-	screen.blit(write2("Good luck!"),(450,685))
+	screen.blit(write2("First, 5 cards are dealt to each player"),(500,60))
+	screen.blit(write2("Next, the player will select one card to view"),(500,85))
+	screen.blit(write2("The player then selects at which place he/she thinks that "),(500,110))
+	screen.blit(write2("the card will rank against the other players selected cards"),(500,135))
+	screen.blit(write2("Then all players will show their cards and scoring will take place as follows"),(500,160))
+	screen.blit(write2("1 point for a correct guess"),(600,185))
+	screen.blit(write2("0 points for being one place off of the correct place"),(600,210))
+	screen.blit(write2("-1 points for being two places off and so on and so forth"),(600,235))
+	screen.blit(write2("Play ends after the deck runs out"),(500,260))
+	screen.blit(write2("In the case of a tie, players with the same card choose another card out of "),(500,285))
+	screen.blit(write2("their five and the higher card gets the higher place"),(500,310))
+	screen.blit(write2("If there is a five card tie with the deck gone, suit will be used to break the"),(500,335))
+	screen.blit(write2("tie with this order from highest to lowest, Spades, Clubs, Hearts, and Diamonds."),(500,360))
+	screen.blit(write2("If there is a tie in points at the end of the game, another round is given with "),(500,385))
+	screen.blit(write2("a reshuffled deck until someone pulls ahead in points"),(500,410))
+	screen.blit(write2("Note: Ace is high"),(500,435))
+	screen.blit(write2("Good luck!"),(500,460))
 	if GameBegan==0:
-		screen.blit(write2("Left click to go back to the main menu"),(450,750))
+		screen.blit(write2("Left click to go back to the main menu"),(500,550))
 	if GameBegan==1:
-		screen.blit(write2("Left click to go back to the game"),(450,750))
+		screen.blit(write2("Left click to go back to the game"),(500,550))
 	pygame.display.update()
 	BACK=True
 	while BACK==True:
@@ -584,6 +558,7 @@ def instructions():
 					BACK=False
 				else:
 					BACK=False
+
 def main():
     newgame()
     global begin
@@ -647,15 +622,17 @@ def main():
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
+	    if event.type==KEYDOWN:
+		if event.key==27:
+			exit()
 		if event.key==K_n:
 			newgame()
 		if event.key==K_SPACE:
 			instructions()
-            if event.type == MOUSEBUTTONDOWN and begin >0:
-                if event.button == 1 and turn_id == 1:
-                    CardClicked(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-		    ChoosePlace()
-		    turn_id=2
+
+        #pygame.display.update()
+       # if 0 == num_of_card or 0 == p2_num_of_card or 0 == p3_num_of_card or 0 == p4_num_of_card:
+            #time.sleep(4)
     exit()
 		
 if __name__ == "__main__":
