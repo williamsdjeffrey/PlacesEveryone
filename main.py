@@ -1,5 +1,6 @@
 import random, os
 import time 
+import sys
 import pygame
 from pygame.locals import *
 from sys import exit
@@ -122,7 +123,7 @@ P_13s = pygame.image.load(iP_13s).convert()
 Back_Card = pygame.image.load(iBack_Card).convert()
 Back_Card90 = pygame.transform.rotate(Back_Card , 90)
 Back_Cardn90 = pygame.transform.rotate(Back_Card , -90)
-
+DeckCounter=32  
 def display_all():
     global player_card_x
     global player_card_rect
@@ -303,7 +304,18 @@ def num_to_cards(num):
         return P_1h
     if 51==num:
         return P_1s
-
+def writenum(int=0, color= (255,255,255)):    
+    #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
+    myfont = pygame.font.Font(None,30)
+    mytext = myfont.render(str(int), True, color)
+    mytext = mytext.convert_alpha()
+    return mytext 
+def writenum2(int=0, color= (255,0,0)):    
+    #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
+    myfont = pygame.font.Font(None,30)
+    mytext = myfont.render(str(int), True, color)
+    mytext = mytext.convert_alpha()
+    return mytext 
 def write(msg="pygame is cool", color= (255,255,255)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
     myfont = pygame.font.Font(None,30)
