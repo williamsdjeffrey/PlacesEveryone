@@ -1,6 +1,5 @@
 import random, os
 import time 
-import sys
 import pygame
 from pygame.locals import *
 from sys import exit
@@ -129,26 +128,17 @@ def display_all():
     global p3_card_x
     global p3_card_rect
     global display_card_x
-    global DeckCounter
+    global desktop_card_rect
+    
     fill_background()
+
+
+    
     display_num_of_cards(player_card_list, num_of_card)
     display_p2_num_of_cards(p2_card_list, p2_num_of_card)
     display_p3_num_of_cards(p3_card_list, p3_num_of_card)
     display_p4_num_of_cards(p4_card_list, p4_num_of_card)
-    screen.blit(Back_Card, (player_card_rect[0][0]-300, player_card_rect[0][1]-200))
-    screen.blit(write("Deck"),(200,275))
-    if DeckCounter>=0:
-    	screen.blit(writenum(DeckCounter),(125,425))
-    else:
-    	screen.blit(write("0"),(125,425))
-    screen.blit(write("cards remaining"),(150,425))
-    if len(sys.argv) > 1:
-    	screen.blit(writenum(sys.argv[1]),(800,650))
-    else:
-	screen.blit(write("Player 1"),(800,650))
-    screen.blit(write("Player 2"),(400,60))
-    screen.blit(write("Player 3"),(800,10))
-    screen.blit(write("Player 4"),(1200,60))
+    display_desktop_cards(desktop_card_list, num_of_desktop_card)
 
 def display_desktop_cards(list, num):
     for x in range(0, num):
@@ -303,18 +293,7 @@ def num_to_cards(num):
         return P_1h
     if 51==num:
         return P_1s
-def writenum(int=0, color= (255,255,255)):    
-    #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
-    myfont = pygame.font.Font(None,30)
-    mytext = myfont.render(str(int), True, color)
-    mytext = mytext.convert_alpha()
-    return mytext 
-def writenum2(int=0, color= (255,0,0)):    
-    #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
-    myfont = pygame.font.Font(None,30)
-    mytext = myfont.render(str(int), True, color)
-    mytext = mytext.convert_alpha()
-    return mytext 
+
 def write(msg="pygame is cool", color= (255,255,255)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
     myfont = pygame.font.Font(None,30)
@@ -351,7 +330,6 @@ def fill_background():
     for y in range(0, screen_height, background.get_height()):
         for x in range(0, screen_width, background.get_width()):
             screen.blit(background, (x, y))
-
 def backtogame():
 	global index
 	display_all()
@@ -406,9 +384,7 @@ def initializeGame():
     global desktop_card_rect
     global p2_card_list     
     global p3_card_list     
-    global p4_card_list 
-    global DeckCounter
-    DeckCounter=32 
+    global p4_card_list     
     global all_card_list    
     
     global org_player_card_x 
@@ -580,7 +556,6 @@ def instructions():
 					BACK=False
 				else:
 					BACK=False
-
 def main():
     newgame()
     global begin
@@ -602,8 +577,7 @@ def main():
     global desktop_card_rect
     global p2_card_list     
     global p3_card_list     
-    global p4_card_list    
-    global CardsInDeck
+    global p4_card_list     
     global all_card_list    
     
     global org_player_card_x 
@@ -647,11 +621,16 @@ def main():
                 exit()
 	    if event.type==KEYDOWN:
 		if event.key==27:
-			exit()
+			DisplayScores() #modify to exit
 		if event.key==K_n:
 			newgame()
 		if event.key==K_SPACE:
-			instructions()
+			instructions()			
+            if event.type == MOUSEBUTTONDOWN and begin >0:
+                if event.button == 1 and turn_id == 1:
+                    CardClicked(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+		    ChoosePlace()
+		    turn_id=2
 
         #pygame.display.update()
        # if 0 == num_of_card or 0 == p2_num_of_card or 0 == p3_num_of_card or 0 == p4_num_of_card:
