@@ -128,17 +128,24 @@ def display_all():
     global p3_card_x
     global p3_card_rect
     global display_card_x
-    global desktop_card_rect
-    
+    global DeckCounter
+    global player_card_list
     fill_background()
-
-
-    
     display_num_of_cards(player_card_list, num_of_card)
     display_p2_num_of_cards(p2_card_list, p2_num_of_card)
     display_p3_num_of_cards(p3_card_list, p3_num_of_card)
     display_p4_num_of_cards(p4_card_list, p4_num_of_card)
-    display_desktop_cards(desktop_card_list, num_of_desktop_card)
+    screen.blit(Back_Card, (player_card_rect[0][0]-300, player_card_rect[0][1]-200))
+    screen.blit(write("Deck"),(200,275))
+    if DeckCounter>=0:
+    	screen.blit(writenum(DeckCounter),(125,425))
+    else:
+    	screen.blit(write("0"),(125,425))
+    screen.blit(write("cards remaining"),(150,425))
+    screen.blit(write("Player 1"),(800,650))
+    screen.blit(write("Player 2"),(400,60))
+    screen.blit(write("Player 3"),(800,10))
+    screen.blit(write("Player 4"),(1200,60))
 
 def display_desktop_cards(list, num):
     for x in range(0, num):
