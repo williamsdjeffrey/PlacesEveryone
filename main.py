@@ -153,9 +153,6 @@ def display_desktop_cards(list, num):
 
 def display_num_of_cards(list, num):
     for x in range(0, 5):
-        #print 'num=%d' % num
-        #print num_to_cards(list[x])
-        #print (player_card_rect[x][0], player_card_rect[x][1])
         screen.blit(Back_Card, (player_card_rect[x][0]+60*x+100, player_card_rect[x][1]))
     return
     
