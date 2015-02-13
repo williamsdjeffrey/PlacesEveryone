@@ -156,10 +156,40 @@ def display_num_of_cards(list, num):
         screen.blit(Back_Card, (player_card_rect[x][0]+60*x+100, player_card_rect[x][1]))
     return
     
-def display_p2_num_of_cards(list, num):
+def display_p2_num_of_cards(list, num):#really player 4
+    global chosenplace4
+    global chosencard4
+    global index4
+    card = random.randint(0, 4)
+    index4=card
+    place = random.randint(1, 4)
     for x in range(0, 5):
-        screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))# p2_card_rect[x][1]))
+	if turn_id==4:
+		chosencard4=p2_card_list[card]
+		chosenplace4=place
+		if card==0:
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[0]),90),(p2_card_rect[x][0]-100,100+100*x))			if x!=0:
+				screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
+		if card==1:
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[1]),90),(p2_card_rect[x][0]-100,100+100*x))
+			if x!=1:
+				screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
+		if card==2:
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[2]),90),(p2_card_rect[x][0]-100,100+100*x))
+			if x!=2:
+				screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
+		if card==3:
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[3]),90),(p2_card_rect[x][0]-100,100+100*x))
+			if x!=3:
+				screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
+		if card==4:
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[4]),90),(p2_card_rect[x][0]-100,100+100*x))
+			if x!=4:
+				screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))		
+	else:
+		screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
     return
+
 
 def display_p3_num_of_cards(list, num):
     for x in range(0, 5):
