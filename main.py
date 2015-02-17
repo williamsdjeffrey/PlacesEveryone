@@ -192,8 +192,40 @@ def display_p2_num_of_cards(list, num):#really player 4
 
 
 def display_p3_num_of_cards(list, num):
+    global chosenplace3
+    global chosencard3
+    global index3
+    card = random.randint(0, 4)
+    index3=card
+    place = random.randint(1, 4)
     for x in range(0, 5):
-        screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+	if turn_id==3:
+		chosencard3=p3_card_list[card]
+		chosenplace3=place
+		if card==0:
+			screen.blit(num_to_cards(p3_card_list[0]),(p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+			if x!=0:
+				screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+		if card==1:
+			screen.blit(num_to_cards(p3_card_list[1]),(p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+			if x!=1:
+				screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+		if card==2:
+			screen.blit(num_to_cards(p3_card_list[2]),(p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+
+
+			if x!=2:
+				screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+		if card==3:
+			screen.blit(num_to_cards(p3_card_list[3]),(p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+			if x!=3:
+				screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+		if card==4:
+			screen.blit(num_to_cards(p3_card_list[4]),(p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+			if x!=4:
+				screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
+	else:
+        	screen.blit(Back_Card, (p3_card_rect[x][0]+60*x+100, p3_card_rect[x][1]))
     return
 
 def display_p4_num_of_cards(list, num):
