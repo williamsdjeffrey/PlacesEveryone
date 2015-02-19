@@ -397,6 +397,11 @@ def write(msg="pygame is cool", color= (255,255,255)):
     mytext = myfont.render(msg, True, color)
     mytext = mytext.convert_alpha()
     return mytext 
+def writenum(int=0, color= (255,255,255)):    
+    #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
+    myfont = pygame.font.Font(None,30)
+    mytext = myfont.render(str(int), True, color)
+    mytext = mytext.convert_alpha()    
 
 def write2(msg="pygame is cool", color= (255,0,0)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
