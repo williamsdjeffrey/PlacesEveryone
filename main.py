@@ -284,7 +284,27 @@ def ini_random_cards(p_card_list, p_id):
         all_card_list[start] = 1
         p_card_list[x] = start
     return p_card_list
-        
+    
+def ini_random_cards2(p_card_list):
+    global all_card_list
+    for x in range(0, 32):
+        start = random.randint(0, 51)
+        i = start
+        while i != -1 :
+            if 0 == all_card_list[start]:
+                if i != 0:
+                    start += 1
+                    start %= 52
+                    i -= 1
+                else:
+                    break
+            else:
+                start += 1
+                start %= 52
+        all_card_list[start] = 1
+        p_card_list[x] = start
+    return p_card_list
+    
 def num_to_cards(num):
     if 0==num:
         return P_2c
