@@ -457,6 +457,52 @@ def fill_background():
     for y in range(0, screen_height, background.get_height()):
         for x in range(0, screen_width, background.get_width()):
             screen.blit(background, (x, y))
+            
+#def DisplayScores(num):
+	global Player1score
+	global Player2score
+	global Player3score
+	global Player4score
+	screen.blit(background, (0,0))
+	screen.blit(write3("Lets See Who's Winning"),(600,100))
+	if len(sys.argv) > 1:
+		screen.blit(writenum2(sys.argv[1]),(300,200))
+	else:
+		screen.blit(write2('Player 1'),(300,200))
+	screen.blit(write2("________"),(300,201))
+	screen.blit(writenum(Player1score),(300,226))
+	screen.blit(write2("Player 2"),(600,200))
+	screen.blit(write2("________"),(600,201))
+	screen.blit(writenum(Player2score),(600,226))
+	screen.blit(write2("Player 3"),(900,200))
+	screen.blit(write2("________"),(900,201))
+	screen.blit(writenum(Player3score),(900,226))
+	screen.blit(write2("Player 4"),(1200,200))
+	screen.blit(write2("________"),(1200,201))
+	screen.blit(writenum(Player4score),(1200,226))
+	screen.blit(write5("Left Click Mouse to return to game"),(550,400))
+	screen.blit(write5("Hit Space to review instructions"),(600,500))
+	screen.blit(write5("Hit n to start a new game"),(650,600))
+	
+	pygame.display.update()
+	BACK=True;
+	while BACK==True:
+		for event in pygame.event.get():
+			if event.type== QUIT:
+				exit()
+			if event.type==MOUSEBUTTONDOWN:
+				BACK=False
+			if event.type==KEYDOWN:
+				if event.key==K_n:
+					newgame()
+					BACK=False
+				if event.key==K_SPACE:
+					instructions(num)
+					BACK=False
+				else:
+					BACK=False
+	backtogame(num)
+	
 def backtogame():
 	global index
 	display_all()
