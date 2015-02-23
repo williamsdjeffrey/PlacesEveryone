@@ -458,7 +458,7 @@ def fill_background():
         for x in range(0, screen_width, background.get_width()):
             screen.blit(background, (x, y))
             
-#def DisplayScores(num):
+def DisplayScores(num):
 	global Player1score
 	global Player2score
 	global Player3score
