@@ -502,7 +502,71 @@ def DisplayScores(num):
 				else:
 					BACK=False
 	backtogame(num)
-	
+def DisplayEndGameScores():
+	global Player1score
+	global Player2score
+	global Player3score
+	global Player4score
+	global winner
+	tracker=0
+	screen.blit(background, (0,0))
+	screen.blit(write3("Lets See Who Won"),(600,100))
+	if len(sys.argv) > 1:
+		screen.blit(writenum2(sys.argv[1]),(300,200))
+	else:
+		screen.blit(write2('Player 1'),(300,200))	
+	screen.blit(write2("________"),(300,201))
+	screen.blit(writenum(Player1score),(300,226))
+	screen.blit(write2("Player 2"),(600,200))
+	screen.blit(write2("________"),(600,201))
+	screen.blit(writenum(Player2score),(600,226))
+	screen.blit(write2("Player 3"),(900,200))
+	screen.blit(write2("________"),(900,201))
+	screen.blit(writenum(Player3score),(900,226))
+	screen.blit(write2("Player 4"),(1200,200))
+	screen.blit(write2("________"),(1200,201))
+	screen.blit(writenum(Player4score),(1200,226))
+	screen.blit(write5("Press any key to start a new game"),(650,600))
+	while tracker==0:
+		if Player1score>Player2score and Player1score>Player3score and Player1score>Player4score:
+			winner=1
+			tracker=1
+		if Player2score>Player1score and Player2score>Player3score and Player2score>Player4score:
+			winner=2
+			tracker=1
+		if Player3score>Player1score and Player3score>Player1score and Player3score>Player4score:
+			winner=3
+			tracker=1
+		if Player4score>Player1score and Player4score>Player2score and Player4score>Player3score:
+			winner=4
+			tracker=1
+		if tracker==0:
+			winner=extraround()
+			tracker=1
+	if winner==1:
+		screen.blit(write2("Winner"),(300,251))
+	if winner==2:
+		screen.blit(write2("Winner"),(600,251))
+	if winner==3:
+		screen.blit(write2("Winner"),(900,251))
+	if winner==4:
+		screen.blit(write2("Winner"),(1200,251))
+	pygame.display.update()
+	BACK=True;
+	while BACK==True:
+		for event in pygame.event.get():
+			if event.type== QUIT:
+				exit()
+			if event.type==MOUSEBUTTONDOWN:
+				BACK=False
+			if event.type==KEYDOWN:
+				if event.key==K_n:
+					BACK=False
+				if event.key==K_SPACE:
+					BACK=False
+				else:
+					BACK=False
+	newgame()	
 def backtogame():
 	global index
 	display_all()
