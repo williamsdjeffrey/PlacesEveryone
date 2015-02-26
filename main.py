@@ -566,7 +566,10 @@ def DisplayEndGameScores():
 					BACK=False
 				else:
 					BACK=False
-	newgame()	
+	newgame()
+def extraround():
+	winner=1
+	return winner
 def backtogame():
 	global index
 	display_all()
