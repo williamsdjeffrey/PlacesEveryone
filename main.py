@@ -580,15 +580,26 @@ def backtogame():
 		DisplayChoices(0)
 def newgame():
     	global GameBegan
+	global Player1score
+	global Player2score
+	global Player3score
+	global Player4score
+	global winner
+	Player1score=0
+	Player2score=0
+	Player3score=0
+	Player4score=0
+	winner=0
     	GameBegan=0
 	screen.blit(background, (0,0))
-	screen.blit(write3("Welcome to Places Everyone"),(600,100))
+	screen.blit(write3("Welcome to \"Places Everyone\""),(600,100))
 	screen.blit(write4("Hit space for instructions"),(700,250))
 	screen.blit(write3("OR"),(775,325))
 	screen.blit(write("Choose Your Computer's Difficulty"),(700,400))
 	screen.blit(write("Hit 1 for easy"),(700,425))
 	screen.blit(write("Hit 2 for medium"),(700,450))
 	screen.blit(write("Hit 3 for hard"),(700,475))
+	screen.blit(write("Hit 4 for very hard"),(700,500))
 	pygame.display.update()
 	BACK=True;
 	while BACK==True:
@@ -600,7 +611,7 @@ def newgame():
 				BACK=False
 			if event.type==KEYDOWN:
 				if event.key==K_SPACE:
-					instructions()
+					instructions(0)
 					BACK=False
 				else:
 					GameBegan=1
