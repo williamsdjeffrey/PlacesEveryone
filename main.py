@@ -570,14 +570,14 @@ def DisplayEndGameScores():
 def extraround():
 	winner=1
 	return winner
-def backtogame():
+def backtogame(num):
 	global index
 	display_all()
 	screen.blit(write2("Press Space to Review Instructions"),(10,10))
+	screen.blit(write2("Press ESC to see who is winning"),(10,35))
+	screen.blit(write2("Press n to start a new game"),(10,60))
 	pygame.display.update()
-	if index>=0:
-		ShowCard([0,-1], index)
-		DisplayChoices(0)
+	if num==1:
 def newgame():
     	global GameBegan
 	global Player1score
