@@ -578,6 +578,9 @@ def backtogame(num):
 	screen.blit(write2("Press n to start a new game"),(10,60))
 	pygame.display.update()
 	if num==1:
+		if index>=0:
+			ShowCard([0,-1], index)
+			DisplayChoices(-1)
 def newgame():
     	global GameBegan
 	global Player1score
