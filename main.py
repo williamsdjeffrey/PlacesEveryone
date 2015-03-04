@@ -634,11 +634,12 @@ def initializeGame():
     global p2_card_rect     
     global p3_card_rect     
     global p4_card_rect     
-    global desktop_card_list
-    global desktop_card_rect
     global p2_card_list     
     global p3_card_list     
-    global p4_card_list     
+    global p4_card_list
+    global CardsInDeck
+    global DeckCounter
+    DeckCounter=32     
     global all_card_list    
     
     global org_player_card_x 
@@ -668,14 +669,12 @@ def initializeGame():
     global p2_num_of_card  
     global p3_num_of_card  
     global p4_num_of_card  
-    global num_of_desktop_card 
     
     
     global start_turn_id 
     global owner         
     global screen_width, screen_height
-    
-    global winner
+
     counter=0
     loop_num=-1
     if loop_num > 0:
@@ -694,11 +693,10 @@ def initializeGame():
 	    p2_card_rect      = [[0,0], [0,0], [0,0], [0,0], [0,0]]
 	    p3_card_rect      = [[0,0], [0,0], [0,0], [0,0], [0,0]]
 	    p4_card_rect      = [[0,0], [0,0], [0,0], [0,0], [0,0]]
-	    desktop_card_list = [0] * 5
-	    desktop_card_rect = [[0,0], [0,0], [0,0], [0,0], [0,0]]
 	    p2_card_list     = [0] * 5
 	    p3_card_list     = [0] * 5
 	    p4_card_list     = [0] * 5
+	    CardsInDeck      = [0] * 32
 	    all_card_list    = [0] * 52
             
 
@@ -716,6 +714,7 @@ def initializeGame():
             p4_card_y     = 50 + P_1c.get_height()
             org_display_card_x = SCREEN_SIZE[0]/2 - P_1c.get_width()/2
             display_card_x     = SCREEN_SIZE[0]/2 - P_1c.get_width()/2
+
             display_card_y     = 280
 
             click_move_y =  30
@@ -729,7 +728,6 @@ def initializeGame():
             p2_num_of_card  = 5
             p3_num_of_card  = 5
             p4_num_of_card  = 5
-            num_of_desktop_card = 0
 
             
             random.seed()
