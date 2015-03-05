@@ -730,12 +730,13 @@ def initializeGame():
             p4_num_of_card  = 5
 
             
-            random.seed()
-            p4_card_list = ini_random_cards(p4_card_list, 4)
-            p3_card_list = ini_random_cards(p3_card_list, 3)
-            p2_card_list = ini_random_cards(p2_card_list, 2)
-            player_card_list = ini_random_cards(player_card_list, 1)
-            
+           random.seed()
+            p4_card_list = ini_random_cards(p4_card_list)
+            p3_card_list = ini_random_cards(p3_card_list)
+            p2_card_list = ini_random_cards(p2_card_list)
+            player_card_list = ini_random_cards(player_card_list)
+	    CardsInDeck = ini_random_cards2(CardsInDeck)            	
+
             start_turn_id = turn_id
             owner         = start_turn_id
 
@@ -754,13 +755,13 @@ def initializeGame():
                 p4_card_rect[i][0]     = p4_card_x
 
 
-            for i in range(0,5):
-                desktop_card_rect[i][1] = display_card_y
 
             start_turn = 0
 			
             display_all()
 	    screen.blit(write2("Press Space to Review Instructions"),(10,10))
+	    screen.blit(write2("Press ESC to see who is winning"),(10,35))
+	    screen.blit(write2("Press n to start a new game"),(10,60))
             pygame.display.update()
             
             time.sleep(1)
