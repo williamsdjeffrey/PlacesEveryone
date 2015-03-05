@@ -766,32 +766,41 @@ def initializeGame():
             
             time.sleep(1)
 	    begin=-1
-def instructions():
+def instructions(num):
 	global GameBegan
 	screen.blit(background, (0,0))
 	screen.blit(write2("instructions"),(700,10))
 	screen.blit(write2("__________"),(700,11))
-	screen.blit(write2("First, 5 cards are dealt to each player"),(500,60))
-	screen.blit(write2("Next, the player will select one card to view"),(500,85))
-	screen.blit(write2("The player then selects at which place he/she thinks that "),(500,110))
-	screen.blit(write2("the card will rank against the other players selected cards"),(500,135))
-	screen.blit(write2("Then all players will show their cards and scoring will take place as follows"),(500,160))
-	screen.blit(write2("1 point for a correct guess"),(600,185))
-	screen.blit(write2("0 points for being one place off of the correct place"),(600,210))
-	screen.blit(write2("-1 points for being two places off and so on and so forth"),(600,235))
-	screen.blit(write2("Play ends after the deck runs out"),(500,260))
-	screen.blit(write2("In the case of a tie, players with the same card choose another card out of "),(500,285))
-	screen.blit(write2("their five and the higher card gets the higher place"),(500,310))
-	screen.blit(write2("If there is a five card tie with the deck gone, suit will be used to break the"),(500,335))
-	screen.blit(write2("tie with this order from highest to lowest, Spades, Clubs, Hearts, and Diamonds."),(500,360))
-	screen.blit(write2("If there is a tie in points at the end of the game, another round is given with "),(500,385))
-	screen.blit(write2("a reshuffled deck until someone pulls ahead in points"),(500,410))
-	screen.blit(write2("Note: Ace is high"),(500,435))
-	screen.blit(write2("Good luck!"),(500,460))
+	screen.blit(write2("Steps:"),(450,60))
+	screen.blit(write2("1) Five cards are dealt to each player face down"),(450,85))
+	screen.blit(write2("2) The player will select one of his cards to view"),(450,110))
+	screen.blit(write2("3) The player selects the place he/she thinks that "),(450,135))
+	screen.blit(write2("the card selected will rank against the other players selected cards"),(475,160))
+	screen.blit(write2("4) The players show and compare cards and see what place their card ranks"),(450,185))
+	screen.blit(write2("5) The players then calculate and record their scores based on the scoring table"),(450,210))
+	screen.blit(write2("6) Cards used are set aside and players grab a replacement card from the deck"),(450,235))
+	screen.blit(write2("7) Repeat steps 1-7 until deck runs out where one final round is played"),(450,260))
+	screen.blit(write2("8) Game then ends and the player with the highest points wins."),(450,285))
+	screen.blit(write2("Notes:"),(450,310))
+	screen.blit(write2("1) Highest card gets first place and lowest card gets last place."),(450,335))
+	screen.blit(write2("2) 2 is considered the lowest card and Ace is considered the highest card."),(450,360))
+	screen.blit(write2("3) In the last round players do not need to have all five cards if deck runs out."),(450,385))
+	screen.blit(write2("4) In the case of a tie, players with the same card choose another card out of "),(450,410))
+	screen.blit(write2("their five and the new higher card gets the higher place"),(475,435))
+	screen.blit(write2("5) In the last round if a player or players have no more cards to break a tie, the cards suit will determine"),(450,460))
+	screen.blit(write2("the higher place. Suits rank in this order from highest to lowest, Spades, Clubs, Hearts, and Diamonds."),(475,485))
+	screen.blit(write2("6) If a players five cards tie with another players five cards suits will also determine the higher place."),(450,510))
+	screen.blit(write2("7) If there is a tie in points at the end of the game, another round is given with "),(450,535))
+	screen.blit(write2("a reshuffled deck until someone pulls ahead in points"),(475,560))
+	screen.blit(write2("Scoring:"),(450,585))
+	screen.blit(write2("1 point for guessing the correct place"),(500,610))
+	screen.blit(write2("0 points for guessing one place off of the correct place"),(500,635))
+	screen.blit(write2("-1 points for guessing two or more places off"),(500,660))
+	screen.blit(write2("Good luck!"),(450,710))
 	if GameBegan==0:
-		screen.blit(write2("Left click to go back to the main menu"),(500,550))
+		screen.blit(write2("Left click to go back to the main menu"),(450,750))
 	if GameBegan==1:
-		screen.blit(write2("Left click to go back to the game"),(500,550))
+		screen.blit(write2("Left click to go back to the game"),(450,750))
 	pygame.display.update()
 	BACK=True
 	while BACK==True:
@@ -801,14 +810,13 @@ def instructions():
 			if event.type==MOUSEBUTTONDOWN:
 				if GameBegan==0:
 					newgame()
-				backtogame()
+				backtogame(num)
 				BACK=False
 			if event.type==KEYDOWN:
 				if event.key==K_n:
 					newgame()
 					BACK=False
-				else:
-					BACK=False
+	return -1
 def main():
     newgame()
     global begin
