@@ -825,6 +825,56 @@ def DisplayChoices(num):
     screen.blit(write("3rd place"),(975,450))
     screen.blit(write("4th place"),(975,475))
     pygame.display.update()
+    if num==0:
+	    BACK=True
+    	    while BACK==True:
+		for event in pygame.event.get():
+			if event.type==QUIT:
+				exit()
+	    		if event.type==KEYDOWN:
+				if event.key==27:
+					DisplayScores(1)
+				if event.key==K_n:
+					newgame()
+				if event.key==K_SPACE:
+					num=instructions(1)
+			if event.type==MOUSEBUTTONDOWN:
+				if 976<= pygame.mouse.get_pos()[0] <1064 and 402<=pygame.mouse.get_pos()[1]<499:					
+					BACK=False
+			    		ChoosePlace(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1] )
+					clicked=True
+    if num==1:
+	    screen.blit(write("Guess Your Place"),(940,375))
+	    screen.blit(background, (975, 400), pygame.Rect(975, 400, 100, 25))
+	    screen.blit(write2("1st place"),(975,400))
+	    screen.blit(write("2nd place"), (975,425))
+	    screen.blit(write("3rd place"),(975,450))
+	    screen.blit(write("4th place"),(975,475))
+	    pygame.display.update()
+    if num==2:
+	    screen.blit(write("Guess Your Place"),(940,375))
+	    screen.blit(write("1st place"),(975,400))
+	    screen.blit(background, (975, 425), pygame.Rect(975, 425, 100, 25))
+	    screen.blit(write2("2nd place"), (975,425))
+	    screen.blit(write("3rd place"),(975,450))
+	    screen.blit(write("4th place"),(975,475))
+	    pygame.display.update()
+    if num==3:
+	    screen.blit(write("Guess Your Place"),(940,375))
+	    screen.blit(write("1st place"),(975,400))
+	    screen.blit(write("2nd place"), (975,425))
+	    screen.blit(background, (975, 450), pygame.Rect(975, 450, 100, 25))
+	    screen.blit(write2("3rd place"),(975,450))
+	    screen.blit(write("4th place"),(975,475))
+	    pygame.display.update()
+    if num==4:
+	    screen.blit(write("Guess Your Place"),(940,375))
+	    screen.blit(write("1st place"),(975,400))
+	    screen.blit(write("2nd place"), (975,425))
+	    screen.blit(write("3rd place"),(975,450))
+	    screen.blit(background, (975, 475), pygame.Rect(975, 475, 100, 25))
+	    screen.blit(write2("4th place"),(975,475))
+	    pygame.display.update()
 def main():
     newgame()
     global begin
