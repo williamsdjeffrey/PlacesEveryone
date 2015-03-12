@@ -817,6 +817,14 @@ def instructions(num):
 					newgame()
 					BACK=False
 	return -1
+def DisplayChoices(num):
+    global clicked
+    screen.blit(write("Guess Your Place"),(940,375))
+    screen.blit(write("1st place"),(975,400))
+    screen.blit(write("2nd place"), (975,425))
+    screen.blit(write("3rd place"),(975,450))
+    screen.blit(write("4th place"),(975,475))
+    pygame.display.update()
 def main():
     newgame()
     global begin
