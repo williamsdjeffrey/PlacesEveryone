@@ -875,6 +875,22 @@ def DisplayChoices(num):
 	    screen.blit(background, (975, 475), pygame.Rect(975, 475, 100, 25))
 	    screen.blit(write2("4th place"),(975,475))
 	    pygame.display.update()
+def CardClicked( mouse_x, mouse_y): 
+    global card_clicked_list
+    global turn_id
+    #global num_of_card
+    global index
+    for i in range(num_of_card-1, -1, -1):
+        if player_card_x + i * P_1c.get_width()/2+60*i+100 <= mouse_x < player_card_x + i * P_1c.get_width()/2 + P_1c.get_width()+60*i+100:
+            if 0 == card_clicked_list[i]:
+                #unclicked the click card
+                if player_card_y <= mouse_y < player_card_y+P_1c.get_height():
+		    ShowCard([0,-1], i)
+		    index=i
+		    DisplayChoices(0)
+		    turn_id=2
+                    card_clicked_list[i] = 0
+                    break
 def main():
     newgame()
     global begin
