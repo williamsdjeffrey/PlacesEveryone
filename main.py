@@ -891,6 +891,142 @@ def CardClicked( mouse_x, mouse_y):
 		    turn_id=2
                     card_clicked_list[i] = 0
                     break
+def CardClicked2(numofties): 
+	global player_card_rect
+	global player_card_list
+	global index
+	global DeckCounter
+	global playertieindex1
+	global playertieindex2
+	global playertieindex3
+	global playertieindex4
+	global suit
+	if numofties==0:
+		card_index=-1
+		while card_index==-1:
+			for event in pygame.event.get():
+			    if event.type == QUIT:
+				exit()		
+			    if event.type == MOUSEBUTTONDOWN:
+				if event.button == 1:
+				    x=pygame.mouse.get_pos()[0]
+				    y=pygame.mouse.get_pos()[1]
+				    if 503<y<626:
+					if 584<x<663 and index!=0:
+						card_index=0
+						playertieindex1=0
+					if 684<x<763 and index!=1:
+						card_index=1
+						playertieindex1=1
+					if 784<x<863 and index!=2:
+						card_index=2
+						playertieindex1=2
+					if 884<x<963 and index!=3:
+						card_index=3
+						playertieindex1=3
+					if 984<x<1063 and index!=4:
+						card_index=4
+						playertieindex1=4
+		screen.blit(num_to_cards(player_card_list[card_index]), (player_card_rect[card_index][0]+60*card_index+100, player_card_rect[card_index][1]))
+		pygame.display.update()
+		result=(player_card_list[card_index])/4+2
+		player_card_list[card_index]=CardsInDeck[DeckCounter-1]
+		return result
+	if numofties==1:
+		card_index=-1
+		while card_index==-1:
+			for event in pygame.event.get():
+			    if event.type == QUIT:
+				exit()		
+			    if event.type == MOUSEBUTTONDOWN:
+				if event.button == 1:
+				    x=pygame.mouse.get_pos()[0]
+				    y=pygame.mouse.get_pos()[1]
+				    if 503<y<626:
+					if 584<x<663 and index!=0 and playertieindex1!=0:
+						card_index=0
+						playertieindex2=0
+					if 684<x<763 and index!=1 and playertieindex1!=1:
+						card_index=1
+						playertieindex2=1
+					if 784<x<863 and index!=2 and playertieindex1!=2:
+						card_index=2
+						playertieindex2=2
+					if 884<x<963 and index!=3 and playertieindex1!=3:
+						card_index=3
+						playertieindex2=3
+					if 984<x<1063 and index!=4 and playertieindex1!=4:
+						card_index=4
+						playertieindex2=4
+		screen.blit(num_to_cards(player_card_list[card_index]), (player_card_rect[card_index][0]+60*card_index+100, player_card_rect[card_index][1]))
+		pygame.display.update()
+		result=(player_card_list[card_index])/4+2
+		player_card_list[card_index]=CardsInDeck[DeckCounter-1]
+		return result
+	if numofties==2:
+		card_index=-1
+		while card_index==-1:
+			for event in pygame.event.get():
+			    if event.type == QUIT:
+				exit()		
+			    if event.type == MOUSEBUTTONDOWN:
+				if event.button == 1:
+				    x=pygame.mouse.get_pos()[0]
+				    y=pygame.mouse.get_pos()[1]
+				    if 503<y<626:
+					if 584<x<663 and index!=0 and playertieindex1!=0 and playertieindex2!=0:
+						card_index=0
+						playertieindex3=0
+					if 684<x<763 and index!=1 and playertieindex1!=1 and playertieindex2!=1:
+						card_index=1
+						playertieindex3=1
+					if 784<x<863 and index!=2 and playertieindex1!=2 and playertieindex2!=2:
+						card_index=2
+						playertieindex3=2
+					if 884<x<963 and index!=3 and playertieindex1!=3 and playertieindex2!=3:
+						card_index=3
+						playertieindex3=3
+					if 984<x<1063 and index!=4 and playertieindex1!=4 and playertieindex2!=4:
+						card_index=4
+						playertieindex3=4
+		screen.blit(num_to_cards(player_card_list[card_index]), (player_card_rect[card_index][0]+60*card_index+100, player_card_rect[card_index][1]))
+		pygame.display.update()
+		result=(player_card_list[card_index])/4+2
+		player_card_list[card_index]=CardsInDeck[DeckCounter-1]
+		return result
+		return result
+	if numofties==3:
+		card_index=-1
+		while card_index==-1:
+			for event in pygame.event.get():
+			    if event.type == QUIT:
+				exit()		
+			    if event.type == MOUSEBUTTONDOWN:
+				if event.button == 1:
+				    x=pygame.mouse.get_pos()[0]
+				    y=pygame.mouse.get_pos()[1]
+				    if 503<y<626:
+					if 584<x<663 and index!=0 and playertieindex1!=0 and playertieindex2!=0 and playertieindex3!=0:
+						card_index=0
+						playertieindex4=0
+					if 684<x<763 and index!=1 and playertieindex1!=1 and playertieindex2!=1 and playertieindex3!=1:
+						card_index=1
+						playertieindex4=1
+					if 784<x<863 and index!=2 and playertieindex1!=2 and playertieindex2!=2 and playertieindex3!=2:
+						card_index=2
+						playertieindex4=2
+					if 884<x<963 and index!=3 and playertieindex1!=3 and playertieindex2!=3 and playertieindex3!=3:
+						card_index=3
+						playertieindex4=3
+					if 984<x<1063 and index!=4 and playertieindex1!=4 and playertieindex2!=4 and playertieindex3!=4:
+						card_index=4
+						playertieindex4=4
+		screen.blit(num_to_cards(player_card_list[card_index]), (player_card_rect[card_index][0]+60*card_index+100, player_card_rect[card_index][1]))
+		pygame.display.update()
+		suit=player_card_list[card_index]
+		result=(player_card_list[card_index])/4+2
+		player_card_list[card_index]=CardsInDeck[DeckCounter-1]
+		return result                
 def main():
     newgame()
     global begin
