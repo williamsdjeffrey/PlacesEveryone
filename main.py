@@ -1026,7 +1026,154 @@ def CardClicked2(numofties):
 		suit=player_card_list[card_index]
 		result=(player_card_list[card_index])/4+2
 		player_card_list[card_index]=CardsInDeck[DeckCounter-1]
-		return result                
+		return result
+def computertiecard(num,numberofties):
+	global p2_card_list     
+	global p3_card_list     
+	global p4_card_list
+	global p2_card_rect
+	global p3_card_rect
+	global p4_card_rect
+	global index2
+	global index3
+	global index4
+	global tieindex1
+	global tieindex2
+	global tieindex3
+	global tieindex4
+	global tieindex11
+	global tieindex22
+	global tieindex33
+	global tieindex44
+	global tieindex111
+	global tieindex222
+	global tieindex333
+	global tieindex444
+	global DeckCounter
+	global suit2
+	global suit3
+	global suit4
+	time.sleep(1)
+	if numberofties==0:
+		card = random.randint(0, 4)
+		if num==0:
+			while card==index2:
+				card = random.randint(0, 4)
+			tieindex1=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p4_card_list[card]),90),(p4_card_rect[card][0]+250, 100+100*card))
+			pygame.display.update()
+			result=	(p4_card_list[card]/4)+2		
+			p4_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==1:
+			while card==index3:
+				card = random.randint(0, 4)
+			tieindex11=card
+			screen.blit(num_to_cards(p3_card_list[card]),(p3_card_rect[card][0]+60*card+100, p3_card_rect[card][1]))
+			pygame.display.update()
+			result=(p3_card_list[card]/4)+2
+			p3_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==2:
+			while card==index4:
+				card = random.randint(0, 4)
+			tieindex111=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[card]),90),(p2_card_rect[card][0]-100,100+100*card))
+			pygame.display.update()
+			result=(p2_card_list[card]/4)+2
+			p2_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+
+	if numberofties==1:
+		card = random.randint(0, 4)
+		if num==0:
+			while card==index2 or card==tieindex1:
+				card = random.randint(0, 4)
+			tieindex2=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p4_card_list[card]),90),(p4_card_rect[card][0]+250, 100+100*card))
+			pygame.display.update()
+			result=	(p4_card_list[card]/4)+2		
+			p4_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==1:
+			while card==index3 or card==tieindex11:
+				card = random.randint(0, 4)
+			tieindex22=card
+			screen.blit(num_to_cards(p3_card_list[card]),(p3_card_rect[card][0]+60*card+100, p3_card_rect[card][1]))
+			pygame.display.update()
+			result=(p3_card_list[card]/4)+2
+			p3_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==2:
+			while card==index4 or card==tieindex111:
+				card = random.randint(0, 4)
+			tieindex222=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[card]),90),(p2_card_rect[card][0]-100,100+100*card))
+			pygame.display.update()
+			result=(p2_card_list[card]/4)+2
+			p2_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+	if numberofties==2:
+		card = random.randint(0, 4)
+		if num==0:
+			while card==index2 or card==tieindex1 or card==tieindex2:
+				card = random.randint(0, 4)
+			tieindex3=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p4_card_list[card]),90),(p4_card_rect[card][0]+250, 100+100*card))
+			pygame.display.update()
+			result=	(p4_card_list[card]/4)+2		
+			p4_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==1:
+			while card==index3 or card==tieindex11 or card==tieindex22:
+				card = random.randint(0, 4)
+			tieindex33=card
+			screen.blit(num_to_cards(p3_card_list[card]),(p3_card_rect[card][0]+60*card+100, p3_card_rect[card][1]))
+			pygame.display.update()
+			result=(p3_card_list[card]/4)+2
+			p3_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==2:
+			while card==index4 or card==tieindex111 or card==tieindex222:
+				card = random.randint(0, 4)
+			tieindex333=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[card]),90),(p2_card_rect[card][0]-100,100+100*card))
+			pygame.display.update()
+			result=(p2_card_list[card]/4)+2
+			p2_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+	if numberofties==3:
+		card = random.randint(0, 4)
+		if num==0:
+			while card==index2 or card==tieindex1 or card==tieindex2 or card==tieindex3:
+				card = random.randint(0, 4)
+			tieindex4=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p4_card_list[card]),90),(p4_card_rect[card][0]+250, 100+100*card))
+			pygame.display.update()
+			suit2=p4_card_list[card]
+			result=	(p4_card_list[card]/4)+2		
+			p4_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==1:
+			while card==index3 or card==tieindex11 or card==tieindex22 or card==tieindex33:
+				card = random.randint(0, 4)
+			tieindex44=card
+			screen.blit(num_to_cards(p3_card_list[card]),(p3_card_rect[card][0]+60*card+100, p3_card_rect[card][1]))
+			pygame.display.update()
+			suit3=p3_card_list[card]
+			result=(p3_card_list[card]/4)+2
+			p3_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result
+		if num==2:
+			while card==index4 or card==tieindex111 or card==tieindex222 or card==tieindex333:
+				card = random.randint(0, 4)
+			tieindex444=card
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[card]),90),(p2_card_rect[card][0]-100,100+100*card))
+			pygame.display.update()
+			suit4=p2_card_list[card]
+			result=(p2_card_list[card]/4)+2
+			p2_card_list[card]=CardsInDeck[DeckCounter-1]
+			return result		
 def main():
     newgame()
     global begin
