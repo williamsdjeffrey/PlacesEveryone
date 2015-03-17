@@ -1173,7 +1173,22 @@ def computertiecard(num,numberofties):
 			suit4=p2_card_list[card]
 			result=(p2_card_list[card]/4)+2
 			p2_card_list[card]=CardsInDeck[DeckCounter-1]
-			return result		
+			return result
+def ChoosePlace(mouse_x,mouse_y):
+	global chosenplace
+	chosenplace=0
+	if 976 <= mouse_x <1064 and 402 <= mouse_y < 421:
+		chosenplace=1
+		DisplayChoices(1)
+	if 976 <= mouse_x <1064 and 421 <= mouse_y < 449:
+		chosenplace=2
+		DisplayChoices(2)
+	if 976 <= mouse_x <1064 and 449 <= mouse_y < 472:
+		chosenplace=3
+		DisplayChoices(3)
+	if 976 <= mouse_x <1064 and 472 <= mouse_y < 499:
+		chosenplace=4
+		DisplayChoices(4)
 def main():
     newgame()
     global begin
@@ -1249,10 +1264,6 @@ def main():
                     CardClicked(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 		    ChoosePlace()
 		    turn_id=2
-
-        #pygame.display.update()
-       # if 0 == num_of_card or 0 == p2_num_of_card or 0 == p3_num_of_card or 0 == p4_num_of_card:
-            #time.sleep(4)
     exit()
 		
 if __name__ == "__main__":
