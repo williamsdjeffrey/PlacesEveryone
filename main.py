@@ -878,7 +878,7 @@ def DisplayChoices(num):
 def CardClicked( mouse_x, mouse_y): 
     global card_clicked_list
     global turn_id
-    #global num_of_card
+    global num_of_card
     global index
     for i in range(num_of_card-1, -1, -1):
         if player_card_x + i * P_1c.get_width()/2+60*i+100 <= mouse_x < player_card_x + i * P_1c.get_width()/2 + P_1c.get_width()+60*i+100:
