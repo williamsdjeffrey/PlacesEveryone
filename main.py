@@ -1189,6 +1189,74 @@ def ChoosePlace(mouse_x,mouse_y):
 	if 976 <= mouse_x <1064 and 472 <= mouse_y < 499:
 		chosenplace=4
 		DisplayChoices(4)
+def highercard(number):
+	global DeckCounter
+	global suit
+	global suit2
+	global suit3
+	global suit4
+	if number==0:
+		#print "1 and 2"
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		if highercard1==highercard2:
+			highercard1=CardClicked2(1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(0,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2:
+				highercard1=CardClicked2(2)
+				DeckCounter=DeckCounter-1
+				highercard2=computertiecard(0,2)
+				DeckCounter=DeckCounter-1
+				if highercard1==highercard2:
+					highercard1=CardClicked2(3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(0,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard2=suit2
+		if highercard1>highercard2:
+			newnumber=1
+		else:
+			newnumber=0
+	if number==1:
+		#print "1 and 3"
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+		if highercard1==highercard2:
+			highercard1=CardClicked2(1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(1,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2:
+				highercard1=CardClicked2(2)
+				DeckCounter=DeckCounter-1
+				highercard2=computertiecard(1,2)
+				DeckCounter=DeckCounter-1
+				if highercard1==highercard2:
+					highercard1=CardClicked2(3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(1,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard2=suit3
+		if highercard1>highercard2:
+			newnumber=1
+		else:
+			newnumber=0
 def main():
     newgame()
     global begin
