@@ -1257,6 +1257,66 @@ def highercard(number):
 			newnumber=1
 		else:
 			newnumber=0
+		if number==2:
+		#print "1 and 4"
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		if highercard1==highercard2:
+			highercard1=CardClicked2(1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(2,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2:
+				highercard1=CardClicked2(2)
+				DeckCounter=DeckCounter-1
+				highercard2=computertiecard(2,2)
+				DeckCounter=DeckCounter-1
+				if highercard1==highercard2:
+					highercard1=CardClicked2(3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(2,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard2=suit4
+		if highercard1>highercard2:
+			newnumber=1
+		else:
+			newnumber=0
+	if number==3:
+		#print "2 and 3"
+		highercard1=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+		if highercard1==highercard2:
+			highercard1=computertiecard(0,1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(1,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2:
+				highercard1=computertiecard(0,2)
+				DeckCounter=DeckCounter-1
+				highercard2=computertiecard(1,2)
+				DeckCounter=DeckCounter-1
+				if highercard1==highercard2:
+					highercard1=computertiecard(0,3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(1,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit2
+						highercard2=suit3
+		if highercard1>highercard2:
+			newnumber=1
+		else:
+			newnumber=0
 def main():
     newgame()
     global begin
