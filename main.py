@@ -1317,6 +1317,35 @@ def highercard(number):
 			newnumber=1
 		else:
 			newnumber=0
+	if number==4:
+		#print "2 and 4"
+		highercard1=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		if highercard1==highercard2:
+			highercard1=computertiecard(0,1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(2,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2:
+				highercard1=computertiecard(0,2)
+				DeckCounter=DeckCounter-1
+				highercard2=computertiecard(2,2)
+				DeckCounter=DeckCounter-1
+				if highercard1==highercard2:
+					highercard1=computertiecard(0,3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(2,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit2
+						highercard2=suit4
+		if highercard1>highercard2:
+			newnumber=1
+		else:
+			newnumber=0
 def main():
     newgame()
     global begin
