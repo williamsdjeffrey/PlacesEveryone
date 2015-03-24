@@ -1257,7 +1257,7 @@ def highercard(number):
 			newnumber=1
 		else:
 			newnumber=0
-		if number==2:
+	if number==2:
 		#print "1 and 4"
 		screen.blit(write("Flip another card"),(750,300))
 		pygame.display.update()
@@ -1346,6 +1346,213 @@ def highercard(number):
 			newnumber=1
 		else:
 			newnumber=0
+	if number==5:
+		#print "3 and 4"
+		highercard1=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		if highercard1==highercard2:
+			highercard1=computertiecard(1,1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(2,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2:
+				highercard1=computertiecard(1,2)
+				DeckCounter=DeckCounter-1
+				highercard2=computertiecard(2,2)
+				DeckCounter=DeckCounter-1
+				if highercard1==highercard2:
+					highercard1=computertiecard(1,3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(2,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit3
+						highercard2=suit4
+		if highercard1>highercard2:
+			newnumber=1
+		else:
+			newnumber=0
+	if number==6:
+		#print "1 and 2 and 3"
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		highercard3=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+	
+		if highercard1>highercard2 and highercard1>highercard3:
+			if highercard2>highercard3:
+				newnumber=5
+			else:
+				newnumber=4
+		if highercard2>highercard1 and highercard2>highercard3:
+			if highercard1>highercard3:
+				newnumber=3
+			else:
+				newnumber=1
+		if highercard3>highercard1 and highercard3>highercard2:
+			if highercard1>highercard2:
+				newnumber=2
+			else:
+				newnumber=0
+	if number==7:
+		#print "2 and 3 and 4"
+		highercard1=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+		highercard3=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		if highercard1>highercard2 and highercard1>highercard3:
+			if highercard2>highercard3:
+				newnumber=5
+			else:
+				newnumber=4
+		if highercard2>highercard1 and highercard2>highercard3:
+			if highercard1>highercard3:
+				newnumber=3
+			else:
+				newnumber=1
+		if highercard3>highercard1 and highercard3>highercard2:
+			if highercard1>highercard2:
+				newnumber=2
+			else:
+				newnumber=0
+	if number==8:
+		#print "1 and 2 and 4"
+		newnumber=0
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		highercard3=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		if highercard1>highercard2 and highercard1>highercard3:
+			if highercard2>highercard3:
+				newnumber=5
+			else:
+				newnumber=4
+		if highercard2>highercard1 and highercard2>highercard3:
+			if highercard1>highercard3:
+				newnumber=3
+			else:
+				newnumber=1
+		if highercard3>highercard1 and highercard3>highercard2:
+			if highercard1>highercard2:
+				newnumber=2
+			else:
+				newnumber=0
+	if number==9:
+		#print "1 and 3 and 4"
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+		highercard3=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		if highercard1>highercard2 and highercard1>highercard3:
+			if highercard2>highercard3:
+				newnumber=5
+			else:
+				newnumber=4
+		if highercard2>highercard1 and highercard2>highercard3:
+			if highercard1>highercard3:
+				newnumber=3
+			else:
+				newnumber=1
+		if highercard3>highercard1 and highercard4>highercard2:
+			if highercard1>highercard2:
+				newnumber=2
+			else:
+				newnumber=0
+	if number==10:
+		#print "1 and 2 and 3 and 4"
+		screen.blit(write("Flip another card"),(750,300))
+		pygame.display.update()
+		highercard1=CardClicked2(0)
+		DeckCounter=DeckCounter-1
+		highercard2=computertiecard(0,0)
+		DeckCounter=DeckCounter-1
+		highercard3=computertiecard(1,0)
+		DeckCounter=DeckCounter-1
+		highercard4=computertiecard(2,0)
+		DeckCounter=DeckCounter-1
+		
+		if highercard1>highercard2 and highercard1>highercard3 and highercard1>highercard4:
+			if highercard2>highercard3 and highercard2>highercard4:
+				if highercard3>highercard4:
+					newnumber=23
+				else:
+					newnumber=22
+			if highercard3>highercard2 and highercard3>highercard4:
+				if highercard2>highercard4:
+					newnumber=21
+				else:
+					newnumber=19
+			if highercard4>highercard2 and highercard4>highercard3:
+				if highercard2>highercard3:
+					newnumber=20
+				else:
+					newnumber=18
+		if highercard2>highercard1 and highercard2>highercard3 and highercard2>highercard4:
+			if highercard1>highercard3 and highercard1>highercard4:
+				if highercard3>highercard4:
+					newnumber=17
+				else:
+					newnumber=16
+			if highercard3>highercard1 and highercard3>highercard4:
+				if highercard1>highercard4:
+					newnumber=11
+				else:
+					newnumber=5
+			if highercard4>highercard1 and highercard4>highercard3:
+				if highercard1>highercard3:
+					newnumber=10
+				else:
+					newnumber=4
+		if highercard3>highercard1 and highercard3>highercard2 and highercard3>highercard4:
+			if highercard1>highercard2 and highercard1>highercard4:
+				if highercard2>highercard4:
+					newnumber=15
+				else:
+					newnumber=13
+			if highercard2>highercard1 and highercard2>highercard4:
+				if highercard1>highercard4:
+					newnumber=9
+				else:
+					newnumber=3
+			if highercard4>highercard1 and highercard4>highercard2:
+				if highercard1>highercard2:
+					newnumber=7
+				else:
+					newnumber=1
+		if highercard4>highercard1 and highercard4>highercard2 and highercard4>highercard3:
+			if highercard1>highercard2 and highercard1>highercard3:
+				if highercard2>highercard3:
+					newnumber=14
+				else:
+					newnumber=12
+			if highercard2>highercard1 and highercard2>highercard3:
+				if highercard1>highercard3:
+					newnumber=8
+				else:
+					newnumber=2
+			if highercard3>highercard1 and highercard3>highercard2:
+				if highercard1>highercard2:
+					newnumber=6
+				else:
+					newnumber=0
+	return newnumber
 def main():
     newgame()
     global begin
