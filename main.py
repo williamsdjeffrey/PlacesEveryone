@@ -1,10 +1,10 @@
 import random, os
 import time 
+import sys
 import pygame
 from pygame.locals import *
 from sys import exit
-
-background_image_filename = 'Image/test.jpg'
+background_image_filename = 'Image/blue.jpg'
 iP_1c = 'Image/01c.gif'
 iP_1d = 'Image/01d.gif'
 iP_1h = 'Image/01h.gif'
@@ -58,10 +58,11 @@ iP_13d = 'Image/13d.gif'
 iP_13h = 'Image/13h.gif'
 iP_13s = 'Image/13s.gif'
 iBack_Card = 'Image/back101.gif'
-
 SCREEN_SIZE = (1600, 900) 
 pygame.init()
 
+source = pygame.mixer.Channel(0)
+pygame.mixer.music.load(1)
 pygame.display.set_icon(pygame.image.load("Image/simpybigtwo_default.png"))
 screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)#SCREEN_SIZE, FULLSCREEN, 32)
 pygame.display.set_caption("Welcome to \"Places Everyone\" - The Newest Card Game on the Market")
@@ -122,6 +123,8 @@ P_13s = pygame.image.load(iP_13s).convert()
 Back_Card = pygame.image.load(iBack_Card).convert()
 Back_Card90 = pygame.transform.rotate(Back_Card , 90)
 Back_Cardn90 = pygame.transform.rotate(Back_Card , -90)
+
+screen_width, screen_height = SCREEN_SIZE
 def display_all():
     global player_card_x
     global player_card_rect
@@ -146,11 +149,7 @@ def display_all():
     screen.blit(write("Player 2"),(400,60))
     screen.blit(write("Player 3"),(800,10))
     screen.blit(write("Player 4"),(1200,60))
-
-def display_desktop_cards(list, num):
-    for x in range(0, num):
-        screen.blit(Back_Card, (800, 300))
-
+    
 def display_num_of_cards(list, num):
     for x in range(0, 5):
         screen.blit(Back_Card, (player_card_rect[x][0]+60*x+100, player_card_rect[x][1]))
@@ -168,7 +167,8 @@ def display_p2_num_of_cards(list, num):#really player 4
 		chosencard4=p2_card_list[card]
 		chosenplace4=place
 		if card==0:
-			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[0]),90),(p2_card_rect[x][0]-100,100+100*x))			if x!=0:
+			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[0]),90),(p2_card_rect[x][0]-100,100+100*x))
+			if x!=0:
 				screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
 		if card==1:
 			screen.blit(pygame.transform.rotate(num_to_cards(p2_card_list[1]),90),(p2_card_rect[x][0]-100,100+100*x))
@@ -189,7 +189,6 @@ def display_p2_num_of_cards(list, num):#really player 4
 	else:
 		screen.blit(Back_Card90,(p2_card_rect[x][0]-100,100+100*x))
     return
-
 
 def display_p3_num_of_cards(list, num):
     global chosenplace3
@@ -263,10 +262,8 @@ def display_p4_num_of_cards(list, num):
         	screen.blit(Back_Cardn90, (p4_card_rect[x][0]+250, 100+100*x))
     return
 
-
-def ini_random_cards(p_card_list, p_id):
+def ini_random_cards(p_card_list):
     global all_card_list
-    global turn_id
     for x in range(0, 5):
         start = random.randint(0, 51)
         i = start
@@ -284,7 +281,7 @@ def ini_random_cards(p_card_list, p_id):
         all_card_list[start] = 1
         p_card_list[x] = start
     return p_card_list
-    
+
 def ini_random_cards2(p_card_list):
     global all_card_list
     for x in range(0, 32):
@@ -304,112 +301,112 @@ def ini_random_cards2(p_card_list):
         all_card_list[start] = 1
         p_card_list[x] = start
     return p_card_list
-    
+        
 def num_to_cards(num):
     if 0==num:
-        return P_2c
+        return P_2s
     if 1==num:
-        return P_2d
+        return P_2c
     if 2==num:
         return P_2h
     if 3==num:
-        return P_2s
+        return P_2d
     if 4==num:
-        return P_3c
+        return P_3s
     if 5==num:
-        return P_3d 
+        return P_3c 
     if 6==num:
         return P_3h
     if 7==num:
-        return P_3s
+        return P_3d
     if 8==num:
-        return P_4c
+        return P_4s
     if 9==num:
-        return P_4d
+        return P_4c
     if 10==num:
         return P_4h
     if 11==num:
-        return P_4s
+        return P_4d
     if 12==num:
-        return P_5c
+        return P_5s
     if 13==num:
-        return P_5d
+        return P_5c
     if 14==num:
         return P_5h
     if 15==num:
-        return P_5s
+        return P_5d
     if 16==num:
-        return P_6c
+        return P_6s
     if 17==num:
-        return P_6d
+        return P_6c
     if 18==num:
         return P_6h
     if 19==num:
-        return P_6s
+        return P_6d
     if 20==num:
-        return P_7c
+        return P_7s
     if 21==num:
-        return P_7d
+        return P_7c
     if 22==num:
         return P_7h
     if 23==num:
-        return P_7s
+        return P_7d
     if 24==num:
-        return P_8c
+        return P_8s
     if 25==num:
-        return P_8d
+        return P_8c
     if 26==num:
         return P_8h
     if 27==num:
-        return P_8s
+        return P_8d
     if 28==num:
-        return P_9c
+        return P_9s
     if 29==num:
-        return P_9d
+        return P_9c
     if 30==num:
         return P_9h
     if 31==num:
-        return P_9s
+        return P_9d
     if 32==num:
-        return P_10c
+        return P_10s
     if 33==num:
-        return P_10d
+        return P_10c
     if 34==num:
         return P_10h
     if 35==num:
-        return P_10s
+        return P_10d
     if 36==num:
-        return P_11c
+        return P_11s
     if 37==num:
-        return P_11d
+        return P_11c
     if 38==num:
         return P_11h
     if 39==num:
-        return P_11s
+        return P_11d
     if 40==num:
-        return P_12c
+        return P_12s
     if 41==num:
-        return P_12d
+        return P_12c
     if 42==num:
         return P_12h
     if 43==num:
-        return P_12s
+        return P_12d
     if 44==num:
-        return P_13c
+        return P_13s
     if 45==num:
-        return P_13d
+        return P_13c
     if 46==num:
         return P_13h
     if 47==num:
-        return P_13s
+        return P_13d
     if 48==num:
-        return P_1c
+        return P_1s
     if 49==num:
-        return P_1d
+        return P_1c
     if 50==num:
         return P_1h
     if 51==num:
-        return P_1s
+        return P_1d
 
 def write(msg="pygame is cool", color= (255,255,255)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
@@ -417,17 +414,21 @@ def write(msg="pygame is cool", color= (255,255,255)):
     mytext = myfont.render(msg, True, color)
     mytext = mytext.convert_alpha()
     return mytext 
+
+
 def writenum(int=0, color= (255,255,255)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
     myfont = pygame.font.Font(None,30)
     mytext = myfont.render(str(int), True, color)
-    mytext = mytext.convert_alpha()    
+    mytext = mytext.convert_alpha()
+    return mytext 
 def writenum2(int=0, color= (255,0,0)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
     myfont = pygame.font.Font(None,30)
     mytext = myfont.render(str(int), True, color)
     mytext = mytext.convert_alpha()
     return mytext 
+
 def write2(msg="pygame is cool", color= (255,0,0)):    
     #myfont = pygame.font.SysFont("None", 32) #To avoid py2exe error
     myfont = pygame.font.Font(None,30)
@@ -451,13 +452,12 @@ def write5(msg="pygame is cool", color= (255,0,0)):
     myfont = pygame.font.Font(None,60)
     mytext = myfont.render(msg, True, color)
     mytext = mytext.convert_alpha()
-    return mytext     
+    return mytext      
 
 def fill_background():
     for y in range(0, screen_height, background.get_height()):
         for x in range(0, screen_width, background.get_width()):
             screen.blit(background, (x, y))
-            
 def DisplayScores(num):
 	global Player1score
 	global Player2score
@@ -619,7 +619,7 @@ def newgame():
 				else:
 					GameBegan=1
 					BACK=False
-	initializeGame()
+	initializeGame()				
 def initializeGame():
     global index
     index=-1
@@ -730,7 +730,7 @@ def initializeGame():
             p4_num_of_card  = 5
 
             
-           random.seed()
+            random.seed()
             p4_card_list = ini_random_cards(p4_card_list)
             p3_card_list = ini_random_cards(p3_card_list)
             p2_card_list = ini_random_cards(p2_card_list)
@@ -878,7 +878,6 @@ def DisplayChoices(num):
 def CardClicked( mouse_x, mouse_y): 
     global card_clicked_list
     global turn_id
-    global num_of_card
     global index
     for i in range(num_of_card-1, -1, -1):
         if player_card_x + i * P_1c.get_width()/2+60*i+100 <= mouse_x < player_card_x + i * P_1c.get_width()/2 + P_1c.get_width()+60*i+100:
@@ -891,6 +890,7 @@ def CardClicked( mouse_x, mouse_y):
 		    turn_id=2
                     card_clicked_list[i] = 0
                     break
+
 def CardClicked2(numofties): 
 	global player_card_rect
 	global player_card_list
@@ -1553,6 +1553,1301 @@ def highercard(number):
 				else:
 					newnumber=0
 	return newnumber
+def tiebreaker():
+	global p1card
+	global p2card
+	global p3card
+	global p4card
+	if p1card==p2card and p1card==p3card and p1card==p4card:
+		#print "all out tie"
+		order=highercard(10)
+		if order==0:
+			p1card=1
+			p2card=2
+			p3card=3
+			p4card=4
+		if order==1:
+			p1card=1
+			p2card=2
+			p3card=4
+			p4card=3
+		if order==2:
+			p1card=1
+			p2card=3
+			p3card=2
+			p4card=4
+		if order==3:
+			p1card=1
+			p2card=3
+			p3card=4
+			p4card=2
+		if order==4:
+			p1card=1
+			p2card=4
+			p3card=2
+			p4card=3
+		if order==5:
+			p1card=1
+			p2card=4
+			p3card=3
+			p4card=2
+		if order==6:
+			p1card=2
+			p2card=1
+			p3card=3
+			p4card=4
+		if order==7:
+			p1card=2
+			p2card=1
+			p3card=4
+			p4card=3
+		if order==8:
+			p1card=2
+			p2card=3
+			p3card=1
+			p4card=4
+		if order==9:
+			p1card=2
+			p2card=3
+			p3card=4
+			p4card=1
+		if order==10:
+			p1card=2
+			p2card=4
+			p3card=1
+			p4card=3
+		if order==11:
+			p1card=2
+			p2card=4
+			p3card=3
+			p4card=1
+		if order==12:
+			p1card=3
+			p2card=1
+			p3card=2
+			p4card=4
+		if order==13:
+			p1card=3
+			p2card=1
+			p3card=4
+			p4card=2
+		if order==14:
+			p1card=3
+			p2card=2
+			p3card=1
+			p4card=4
+		if order==15:
+			p1card=3
+			p2card=2
+			p3card=4
+			p4card=1
+		if order==16:
+			p1card=3
+			p2card=4
+			p3card=1
+			p4card=2
+		if order==17:
+			p1card=3
+			p2card=4
+			p3card=2
+			p4card=1
+		if order==18:
+			p1card=4
+			p2card=1
+			p3card=2
+			p4card=3
+		if order==19:
+			p1card=4
+			p2card=1
+			p3card=3
+			p4card=2
+		if order==20:
+			p1card=4
+			p2card=2
+			p3card=1
+			p4card=3
+		if order==21:
+			p1card=4
+			p2card=2
+			p3card=3
+			p4card=1
+		if order==22:
+			p1card=4
+			p2card=3
+			p3card=1
+			p4card=2
+		if order==23:
+			p1card=4
+			p2card=3
+			p3card=2
+			p4card=1
+	if p1card==p2card and p1card==p3card and p1card!=p4card:
+		#print "three way tie1"
+
+		order=highercard(6)
+		if p4card>p1card:
+			if order==0:
+				p1card=1
+				p2card=2
+				p3card=3
+				p4card=4
+			if order==1:
+				p1card=2
+				p2card=1
+				p3card=3
+				p4card=4
+			if order==2:
+				p1card=2
+				p2card=3
+				p3card=1
+				p4card=4
+			if order==3:
+				p1card=3
+				p2card=1
+				p3card=2
+				p4card=4
+			if order==4:
+				p1card=3
+				p2card=2
+				p3card=1
+				p4card=4
+			if order==5:
+				p1card=1
+				p2card=3
+				p3card=2
+				p4card=4
+		if p4card<p1card:
+			if order==0:
+				p1card=2
+				p2card=3
+				p3card=4
+				p4card=1
+			if order==1:
+				p1card=2
+				p2card=4
+				p3card=3
+				p4card=1
+			if order==2:
+				p1card=3
+				p2card=2
+				p3card=4
+				p4card=1
+			if order==3:
+				p1card=3
+				p2card=4
+				p3card=2
+				p4card=1
+			if order==4:
+
+				p1card=4
+				p2card=2
+				p3card=3
+				p4card=1
+			if order==5:
+				p1card=4
+				p2card=3
+				p3card=2
+				p4card=1
+		
+	if p1card==p2card and p1card!=p3card and p1card==p4card:
+		#print "three way tie2"
+		order=highercard(8)
+		if p3card>p1card:
+			if order==0:
+				p1card=1
+				p2card=2
+				p3card=4
+				p4card=3
+			if order==1:
+				p1card=1
+				p2card=3
+				p3card=4
+				p4card=2
+			if order==2:
+				p1card=2
+				p2card=1
+				p3card=4
+				p4card=3
+			if order==3:
+				p1card=2
+				p2card=3
+				p3card=4
+				p4card=1
+			if order==4:
+				p1card=3
+				p2card=1
+				p3card=4
+				p4card=2
+			if order==5:
+				p1card=3
+				p2card=2
+				p3card=4
+				p4card=1
+		if p3card<p1card:
+			if order==0:
+				p1card=2
+				p2card=3
+				p3card=1
+				p4card=4
+			if order==1:
+				p1card=2
+				p2card=4
+				p3card=1
+				p4card=3
+			if order==2:
+				p1card=3
+				p2card=2
+				p3card=1
+				p4card=4
+			if order==3:
+				p1card=3
+				p2card=4
+				p3card=1
+				p4card=2
+			if order==4:
+				p1card=4
+				p2card=2
+				p3card=1
+				p4card=3
+			if order==5:
+				p1card=4
+				p2card=3
+				p3card=1
+				p4card=2
+	if p1card!=p2card and p1card==p3card and p1card==p4card:
+		#print "three way tie3"
+		order=highercard(9)
+		if p2card>p1card:
+			if order==0:
+				p1card=1
+				p2card=4
+				p3card=2
+				p4card=3
+			if order==1:
+				p1card=1
+				p2card=4
+				p3card=3
+				p4card=2
+			if order==2:
+				p1card=2
+				p2card=4
+				p3card=1
+				p4card=3
+			if order==3:
+				p1card=2
+				p2card=4
+				p3card=3
+				p4card=1
+			if order==4:
+				p1card=3
+				p2card=4
+				p3card=1
+				p4card=2
+			if order==5:
+				p1card=3
+				p2card=4
+				p3card=2
+				p4card=1
+		if p2card<p1card:
+			if order==0:
+				p1card=2
+				p2card=1
+				p3card=3
+				p4card=4
+			if order==1:
+				p1card=2
+				p2card=1
+				p3card=4
+				p4card=3
+			if order==2:
+				p1card=3
+				p2card=1
+				p3card=2
+				p4card=4
+			if order==3:
+				p1card=3
+				p2card=1
+				p3card=4
+				p4card=2
+			if order==4:
+				p1card=4
+				p2card=1
+				p3card=2
+				p4card=3
+			if order==5:
+				p1card=4
+				p2card=1
+				p3card=3
+				p4card=2
+	if p4card==p3card and p2card==p4card and p2card!=p1card:
+		#print "three way tie4"
+		order=highercard(7)
+		if p1card>p2card:
+			if order==0:
+				p1card=4
+				p2card=1
+				p3card=2
+				p4card=3
+			if order==1:
+				p1card=4
+				p2card=1
+				p3card=3
+				p4card=2
+			if order==2:
+				p1card=4
+				p2card=2
+				p3card=1
+				p4card=3
+			if order==3:
+				p1card=4
+				p2card=2
+				p3card=3
+				p4card=1
+			if order==4:
+				p1card=4
+				p2card=3
+				p3card=1
+				p4card=2
+			if order==5:
+				p1card=4
+				p2card=3
+				p3card=2
+				p4card=1
+		if p1card<p2card:
+			if order==0:
+				p1card=2
+				p2card=3
+				p3card=4
+				p4card=1
+			if order==1:
+				p1card=2
+				p2card=4
+				p3card=3
+				p4card=1
+			if order==2:
+				p1card=3
+				p2card=2
+				p3card=4
+				p4card=1
+			if order==3:
+				p1card=3
+				p2card=4
+				p3card=2
+				p4card=1
+			if order==4:
+				p1card=4
+				p2card=2
+				p3card=3
+				p4card=1
+			if order==5:
+				p1card=4
+				p2card=3
+				p3card=2
+				p4card=1
+	if p1card==p2card and p3card==p4card and p1card!=p3card:
+		#print "two two way ties1"
+		order=highercard(0)
+		order2=highercard(5)
+		if p1card>p3card:
+			if order==0 and order2==0:
+				p1card=4
+				p2card=3
+				p3card=1
+				p4card=2				
+			if order==0 and order2==1:
+				p1card=4
+				p2card=3
+				p3card=2
+				p4card=1
+			if order==1 and order2==0:
+				p1card=3
+				p2card=4
+				p3card=1
+				p4card=2
+			if order==1 and order2==1:
+				p1card=3
+				p2card=4
+				p3card=2
+				p4card=1
+		if p1card<p3card:
+			if order==0 and order2==0:
+				p1card=1
+				p2card=2
+				p3card=3
+				p4card=4				
+			if order==0 and order2==1:
+				p1card=1
+				p2card=2
+				p3card=4
+				p4card=3
+			if order==1 and order2==0:
+				p1card=2
+				p2card=1
+				p3card=3
+				p4card=4
+			if order==1 and order2==1:
+				p1card=2
+				p2card=1
+				p3card=4
+				p4card=3
+	if p1card==p3card and p2card==p4card and p1card!=p2card:
+		#print "two two way ties2"
+		order=highercard(1)
+		order2=highercard(4)
+		if p1card>p2card:
+			if order==0 and order2==0:
+				p1card=3
+				p2card=1
+				p3card=4
+				p4card=2				
+			if order==0 and order2==1:
+				p1card=3
+				p2card=2
+				p3card=4
+				p4card=1
+			if order==1 and order2==0:
+				p1card=4
+				p2card=1
+				p3card=3
+				p4card=2
+			if order==1 and order2==1:
+				p1card=4
+				p2card=2
+				p3card=3
+				p4card=1
+		if p1card<p2card:
+			if order==0 and order2==0:
+				p1card=1
+				p2card=3
+				p3card=2
+				p4card=4				
+			if order==0 and order2==1:
+				p1card=1
+				p2card=4
+				p3card=2
+				p4card=3
+			if order==1 and order2==0:
+				p1card=2
+				p2card=3
+				p3card=1
+				p4card=4
+			if order==1 and order2==1:
+				p1card=2
+				p2card=4
+				p3card=1
+				p4card=3
+	if p1card==p4card and p2card==p3card and p1card!=p2card:
+		#print "two two way ties3"
+		order=highercard(2)
+		order2=highercard(3)
+		if p1card>p2card:
+			if order==0 and order2==0:
+				p1card=3
+				p2card=1
+				p3card=2
+				p4card=4				
+			if order==0 and order2==1:
+				p1card=3
+				p2card=2
+				p3card=1
+				p4card=4
+			if order==1 and order2==0:
+				p1card=4
+				p2card=1
+				p3card=2
+				p4card=3
+			if order==1 and order2==1:
+				p1card=4
+				p2card=2
+				p3card=1
+				p4card=3
+		if p1card<p2card:
+			if order==0 and order2==0:
+				p1card=1
+				p2card=3
+				p3card=4
+				p4card=2				
+			if order==0 and order2==1:
+				p1card=1
+				p2card=4
+				p3card=3
+				p4card=2
+			if order==1 and order2==0:
+				p1card=2
+				p2card=3
+				p3card=4
+				p4card=1
+			if order==1 and order2==1:
+				p1card=2
+				p2card=4
+				p3card=3
+				p4card=1
+	if p1card==p2card and p1card!=p3card and p1card!=p4card and p2card!=p3card and p4card!=p2card and p4card!=p3card:
+		#print "tie between 1 and 2"
+		order=highercard(0)
+		if p1card>p3card and p1card>p4card:
+			if p3card>p4card:
+				if order==0:
+					p1card=3
+					p2card=4
+					p3card=2
+					p4card=1				
+				if order==1:
+					p1card=4
+					p2card=3
+					p3card=2
+					p4card=1
+			if p3card<p4card:
+				if order==0:
+					p1card=3
+					p2card=4
+					p3card=1
+					p4card=2				
+				if order==1:
+					p1card=4
+					p2card=3
+					p3card=1
+					p4card=2			
+		if p1card<p3card and p1card<p4card:
+			if p3card>p4card:
+				if order==0:
+					p1card=1
+					p2card=2
+					p3card=4
+					p4card=3				
+				if order==1:
+					p1card=2
+					p2card=1
+					p3card=4
+					p4card=3
+			if p3card<p4card:
+				if order==0:
+					p1card=1
+					p2card=2
+					p3card=3
+					p4card=4				
+				if order==1:
+					p1card=2
+					p2card=1
+					p3card=3
+					p4card=4
+		if p1card>p3card and p1card<p4card:
+			if order==0:
+				p1card=2
+				p2card=3
+				p3card=1
+				p4card=4				
+			if order==1:
+				p1card=3
+				p2card=2
+				p3card=1
+				p4card=4
+		if p1card<p3card and p1card>p4card:
+			if order==0:
+				p1card=2
+				p2card=3
+				p3card=4
+				p4card=1				
+			if order==1:
+				p1card=3
+				p2card=2
+				p3card=4
+				p4card=1
+	if p1card==p3card and p1card!=p2card and p1card!=p4card and p2card!=p3card and p4card!=p2card and p4card!=p3card:
+		#print "tie between 1 and 3"
+		order=highercard(1)
+		if p1card>p2card and p1card>p4card:
+			if p2card>p4card:
+				if order==0:
+					p1card=3
+					p2card=2
+					p3card=4
+					p4card=1				
+				if order==1:
+					p1card=4
+					p2card=2
+					p3card=3
+					p4card=1
+			if p2card<p4card:
+				if order==0:
+					p1card=3
+					p2card=1
+					p3card=4
+					p4card=2				
+				if order==1:
+					p1card=4
+					p2card=1
+					p3card=3
+					p4card=2			
+		if p1card<p2card and p1card<p4card:
+			if p2card>p4card:
+				if order==0:
+					p1card=1
+					p2card=4
+					p3card=2
+					p4card=3				
+				if order==1:
+					p1card=2
+					p2card=4
+					p3card=1
+					p4card=3
+			if p2card<p4card:
+				if order==0:
+					p1card=1
+					p2card=3
+					p3card=2
+					p4card=4				
+				if order==1:
+					p1card=2
+					p2card=3
+					p3card=1
+					p4card=4
+		if p1card>p2card and p1card<p4card:
+			if order==0:
+				p1card=2
+				p2card=1
+				p3card=3
+				p4card=4				
+			if order==1:
+				p1card=3
+				p2card=1
+				p3card=2
+				p4card=4
+		if p1card<p2card and p1card>p4card:
+			if order==0:
+				p1card=2
+				p2card=4
+				p3card=3
+				p4card=1				
+			if order==1:
+
+				p1card=3
+				p2card=4
+				p3card=2
+				p4card=1
+	if p1card==p4card and p1card!=p2card and p1card!=p3card and p2card!=p3card and p4card!=p2card and p4card!=p3card:
+		#print "tie between 1 and 4"
+		order=highercard(2)
+		if p1card>p2card and p1card>p3card:
+			if p2card>p3card:
+				if order==0:
+					p1card=3
+					p2card=2
+					p3card=1
+					p4card=4				
+				if order==1:
+					p1card=4
+					p2card=2
+					p3card=1
+					p4card=3
+			if p2card<p3card:
+				if order==0:
+					p1card=3
+					p2card=1
+					p3card=2
+					p4card=4				
+				if order==1:
+					p1card=4
+					p2card=1
+					p3card=2
+					p4card=3			
+		if p1card<p2card and p1card<p3card:
+			if p2card>p3card:
+				if order==0:
+					p1card=1
+					p2card=4
+					p3card=3
+					p4card=2				
+				if order==1:
+					p1card=2
+					p2card=4
+					p3card=3
+					p4card=1
+			if p2card<p3card:
+				if order==0:
+					p1card=1
+					p2card=3
+					p3card=4
+					p4card=2				
+				if order==1:
+					p1card=2
+					p2card=3
+					p3card=4
+					p4card=1
+		if p1card>p2card and p1card<p3card:
+			if order==0:
+				p1card=2
+				p2card=1
+				p3card=4
+				p4card=3				
+			if order==1:
+				p1card=3
+				p2card=1
+				p3card=4
+				p4card=2
+		if p1card<p2card and p1card>p3card:
+			if order==0:
+				p1card=2
+				p2card=4
+				p3card=1
+				p4card=3				
+			if order==1:
+				p1card=3
+				p2card=4
+				p3card=1
+				p4card=2
+	if p2card==p4card and p1card!=p2card and p1card!=p3card and p2card!=p3card and p1card!=p4card and p4card!=p3card:
+		#print "tie between 2 and 4"
+		order=highercard(4)
+		if p2card>p1card and p2card>p3card:
+			if p1card>p3card:
+				if order==0:
+					p1card=2
+					p2card=3
+					p3card=1
+					p4card=4				
+				if order==1:
+					p1card=2
+					p2card=4
+					p3card=1
+					p4card=3
+			if p1card<p3card:
+				if order==0:
+					p1card=1
+					p2card=3
+					p3card=2
+					p4card=4				
+				if order==1:
+					p1card=1
+					p2card=4
+					p3card=2
+					p4card=3			
+		if p2card<p1card and p2card<p3card:
+			if p1card>p3card:
+				if order==0:
+					p1card=4
+					p2card=1
+					p3card=3
+					p4card=2				
+				if order==1:
+					p1card=4
+					p2card=2
+					p3card=3
+					p4card=1
+			if p1card<p3card:
+				if order==0:
+					p1card=3
+					p2card=1
+					p3card=4
+					p4card=2				
+				if order==1:
+					p1card=3
+					p2card=2
+					p3card=4
+					p4card=1
+		if p2card>p1card and p2card<p3card:
+			if order==0:
+				p1card=1
+				p2card=2
+				p3card=4
+				p4card=3				
+			if order==1:
+				p1card=1
+				p2card=3
+				p3card=4
+				p4card=2
+		if p2card<p1card and p2card>p3card:
+			if order==0:
+				p1card=4
+				p2card=2
+				p3card=1
+				p4card=3				
+			if order==1:
+				p1card=4
+				p2card=3
+				p3card=1
+				p4card=2
+	if p2card==p3card and p1card!=p2card and p1card!=p3card and p2card!=p4card and p1card!=p4card and p4card!=p3card:
+		#print "tie between 2 and 3"
+		order=highercard(3)
+		if p2card>p1card and p2card>p4card:
+			if p1card>p4card:
+				if order==0:
+					p1card=2
+					p2card=3
+					p3card=4
+					p4card=1				
+				if order==1:
+					p1card=2
+					p2card=4
+					p3card=3
+					p4card=1
+			if p1card<p4card:
+				if order==0:
+					p1card=1
+					p2card=3
+					p3card=4
+					p4card=2				
+				if order==1:
+					p1card=1
+					p2card=4
+					p3card=3
+					p4card=2			
+		if p2card<p1card and p2card<p4card:
+			if p1card>p4card:
+				if order==0:
+					p1card=4
+					p2card=1
+					p3card=2
+					p4card=3				
+				if order==1:
+					p1card=4
+					p2card=2
+					p3card=1
+					p4card=3
+			if p1card<p4card:
+				if order==0:
+					p1card=3
+					p2card=1
+					p3card=2
+					p4card=4				
+				if order==1:
+					p1card=3
+					p2card=2
+					p3card=1
+					p4card=4
+		if p2card>p1card and p2card<p4card:
+			if order==0:
+				p1card=1
+				p2card=2
+				p3card=3
+				p4card=4				
+			if order==1:
+				p1card=1
+				p2card=3
+				p3card=2
+				p4card=4
+		if p2card<p1card and p2card>p4card:
+			if order==0:
+				p1card=4
+				p2card=2
+				p3card=3
+				p4card=1				
+			if order==1:
+				p1card=4
+				p2card=3
+				p3card=2
+				p4card=1
+	if p3card==p4card and p1card!=p2card and p1card!=p3card and p2card!=p4card and p1card!=p4card and p2card!=p3card:
+		#print "tie between 3 and 4"
+		order=highercard(5)
+		if p3card>p1card and p3card>p2card:
+			if p1card>p2card:
+				if order==0:
+					p1card=2
+					p2card=1
+					p3card=3
+					p4card=4				
+				if order==1:
+					p1card=2
+					p2card=1
+					p3card=4
+					p4card=3
+			if p1card<p2card:
+				if order==0:
+					p1card=1
+					p2card=2
+					p3card=3
+					p4card=4				
+				if order==1:
+					p1card=1
+					p2card=2
+					p3card=4
+					p4card=3			
+		if p3card<p1card and p3card<p2card:
+			if p1card>p2card:
+				if order==0:
+					p1card=4
+					p2card=3
+					p3card=1
+					p4card=2				
+				if order==1:
+					p1card=4
+					p2card=3
+					p3card=2
+					p4card=1
+			if p1card<p2card:
+				if order==0:
+					p1card=3
+					p2card=4
+					p3card=1
+					p4card=2				
+				if order==1:
+					p1card=3
+					p2card=4
+					p3card=2
+					p4card=1
+		if p3card>p1card and p3card<p2card:
+			if order==0:
+				p1card=1
+				p2card=4
+				p3card=2
+				p4card=3				
+			if order==1:
+				p1card=1
+				p2card=4
+				p3card=3
+				p4card=2
+		if p3card<p1card and p3card>p2card:
+			if order==0:
+				p1card=4
+				p2card=1
+				p3card=2
+				p4card=3				
+			if order==1:
+				p1card=4
+				p2card=1
+				p3card=3
+				p4card=2
+
+def calculatescores():
+	global Player1score
+	global Player2score
+	global Player3score
+	global Player4score
+	global Player1rscore
+	global index
+	global chosencard2
+	global chosencard3
+	global chosencard4
+	global chosenplace
+	global p1card
+	global p2card
+	global p3card
+	global p4card
+	tracker=0
+	p1card=(player_card_list[index]/4)+2
+	p2card=((chosencard2)/4)+2
+	p3card=((chosencard3)/4)+2
+	p4card=((chosencard4)/4)+2
+	tiebreaker()
+	if chosenplace==1:
+		if p1card>p2card and p1card>p3card and p1card>p4card:
+			Player1score=Player1score+1
+			Player1rscore=1
+			tracker=1
+		if (p1card>p2card and p1card>p3card and p1card<p4card) or (p1card>p3card and p1card>p4card and p1card<p2card) or (p1card>p2card and p1card>p4card and p1card<p3card):
+			Player1score=Player1score+0
+			Player1rscore=0
+			tracker=1
+		if tracker==0:
+			Player1score=Player1score-1
+			Player1rscore=-1
+	if chosenplace==2:
+		if p1card<p2card and p1card<p3card and p1card<p4card:
+			Player1score=Player1score-1
+			Player1rscore=-1
+			tracker=1
+		if (p1card>p2card and p1card>p3card and p1card<p4card) or (p1card>p3card and p1card>p4card and p1card<p2card) or (p1card>p2card and p1card>p4card and p1card<p3card):
+			Player1score=Player1score+1
+			Player1rscore=1
+			tracker=1
+		if tracker==0:
+			Player1score=Player1score+0
+			Player1rscore=0
+	if chosenplace==3:
+		if p1card>p2card and p1card>p3card and p1card>p4card:
+			Player1score=Player1score-1
+			Player1rscore=-1
+			tracker=1
+		if (p1card>p2card and p1card<p3card and p1card<p4card) or (p1card>p3card and p1card<p4card and p1card<p2card) or (p1card>p4card and p1card<p2card and p1card<p3card):
+			Player1score=Player1score+1
+			Player1rscore=1
+			tracker=1
+		if tracker==0:
+			Player1score=Player1score+0
+			Player1rscore=0
+	if chosenplace==4:
+		if p1card<p2card and p1card<p3card and p1card<p4card:
+			Player1score=Player1score+1
+			Player1rscore=1
+			tracker=1
+		if (p1card>p2card and p1card<p3card and p1card<p4card) or (p1card>p3card and p1card<p4card and p1card<p2card) or (p1card>p4card and p1card<p2card and p1card<p3card):
+
+
+			Player1score=Player1score+0
+			Player1rscore=0
+			tracker=1
+		if tracker==0:
+			Player1score=Player1score-1
+			Player1rscore=-1
+	calculatep2score()
+	calculatep3score()
+	calculatep4score()
+def calculatep2score():
+	global Player2rscore
+	global Player2score
+	global chosenplace2
+	global p1card
+	global p2card
+	global p3card
+	global p4card
+	tracker=0
+	if chosenplace2==1:
+		if p2card>p1card and p2card>p3card and p2card>p4card:
+			Player2score=Player2score+1
+			Player2rscore=1
+			tracker=1
+		if (p2card>p1card and p2card>p3card and p2card<p4card) or (p2card>p3card and p2card>p4card and p2card<p1card) or (p2card>p1card and p2card>p4card and p2card<p3card):
+			Player2score=Player2score+0
+			Player2rscore=0
+			tracker=1
+		if tracker==0:
+			Player2score=Player2score-1
+			Player2rscore=-1
+	if chosenplace2==2:
+		if p2card<p1card and p2card<p3card and p2card<p4card:
+			Player2score=Player2score-1
+			Player2rscore=-1
+			tracker=1
+		if (p2card>p1card and p2card>p3card and p2card<p4card) or (p2card>p3card and p2card>p4card and p2card<p1card) or (p2card>p1card and p2card>p4card and p2card<p3card):
+			Player2score=Player2score+1
+			Player2rscore=1
+			tracker=1
+		if tracker==0:
+			Player2score=Player2score+0
+			Player2rscore=0
+	if chosenplace2==3:
+		if p2card>p1card and p2card>p3card and p2card>p4card:
+			Player2score=Player2score-1
+			Player2rscore=-1
+			tracker=1
+		if (p2card>p1card and p2card<p3card and p2card<p4card) or (p2card>p3card and p2card<p4card and p2card<p1card) or (p2card>p4card and p2card<p1card and p2card<p3card):
+			Player2score=Player2score+1
+			Player2rscore=1
+			tracker=1
+		if tracker==0:
+			Player2score=Player2score+0
+			Player2rscore=0
+	if chosenplace2==4:
+		if p2card<p1card and p2card<p3card and p2card<p4card:
+			Player2score=Player2score+1
+			Player2rscore=1
+			tracker=1
+		if (p2card>p1card and p2card<p3card and p2card<p4card) or (p2card>p3card and p2card<p4card and p2card<p1card) or (p2card>p4card and p2card<p1card and p2card<p3card):
+			Player2score=Player2score+0
+			Player2rscore=0
+			tracker=1
+		if tracker==0:
+			Player2score=Player2score-1
+			Player2rscore=-1
+def calculatep3score():
+	global Player3rscore
+	global Player3score
+	global chosenplace3
+	global p1card
+	global p2card
+	global p3card
+	global p4card
+	tracker=0
+	if chosenplace3==1:
+		if p3card>p2card and p3card>p1card and p3card>p4card:
+			Player3score=Player3score+1
+			Player3rscore=1
+			tracker=1
+		if (p3card>p2card and p3card>p1card and p3card<p4card) or (p3card>p1card and p3card>p4card and p3card<p2card) or (p3card>p2card and p3card>p4card and p3card<p1card):
+			Player3score=Player3score+0
+			Player3rscore=0
+			tracker=1
+		if tracker==0:
+			Player3score=Player3score-1
+			Player3rscore=-1
+	if chosenplace3==2:
+		if p3card<p2card and p3card<p1card and p3card<p4card:
+			Player3score=Player3score-1
+			Player3rscore=-1
+			tracker=1
+		if (p3card>p2card and p3card>p1card and p3card<p4card) or (p3card>p1card and p3card>p4card and p3card<p2card) or (p3card>p2card and p3card>p4card and p3card<p1card):
+			Player3score=Player3score+1
+			Player3rscore=1
+			tracker=1
+		if tracker==0:
+			Player3score=Player3score+0
+			Player3rscore=0
+	if chosenplace3==3:
+		if p3card>p2card and p3card>p1card and p3card>p4card:
+			Player3score=Player3score-1
+			Player3rscore=-1
+			tracker=1
+		if (p3card>p2card and p3card<p1card and p3card<p4card) or (p3card>p1card and p3card<p4card and p3card<p2card) or (p3card>p4card and p3card<p2card and p3card<p1card):
+			Player3score=Player3score+1
+			Player3rscore=1
+			tracker=1
+		if tracker==0:
+			Player3score=Player3score+0
+			Player3rscore=0
+	if chosenplace3==4:
+		if p3card<p2card and p3card<p1card and p3card<p4card:
+			Player3score=Player3score+1
+			Player3rscore=1
+			tracker=1
+		if (p3card>p2card and p3card<p1card and p3card<p4card) or (p3card>p1card and p3card<p4card and p3card<p2card) or (p3card>p4card and p3card<p2card and p3card<p1card):
+			Player3score=Player3score+0
+			Player3rscore=0
+			tracker=1
+		if tracker==0:
+			Player3score=Player3score-1
+			Player3rscore=-1
+def calculatep4score():
+	global Player4rscore
+	global Player4score
+	global chosenplace4
+	global p1card
+	global p2card
+	global p3card
+	global p4card
+	tracker=0
+	if chosenplace4==1:
+		if p4card>p2card and p4card>p3card and p4card>p1card:
+			Player4score=Player4score+1
+			Player4rscore=1
+			tracker=1
+		if (p4card>p2card and p4card>p3card and p4card<p1card) or (p4card>p3card and p4card>p1card and p4card<p2card) or (p4card>p2card and p4card>p1card and p4card<p3card):
+			Player4score=Player4score+0
+			Player4rscore=0
+			tracker=1
+		if tracker==0:
+			Player4score=Player4score-1
+			Player4rscore=-1
+	if chosenplace4==2:
+		if p4card<p2card and p4card<p3card and p4card<p1card:
+			Player4score=Player4score-1
+			Player4rscore=-1
+			tracker=1
+		if (p4card>p2card and p4card>p3card and p4card<p1card) or (p4card>p3card and p4card>p1card and p4card<p2card) or (p4card>p2card and p4card>p1card and p4card<p3card):
+			Player4score=Player4score+1
+			Player4rscore=1
+			tracker=1
+		if tracker==0:
+			Player4score=Player4score+0
+			Player4rscore=0
+	if chosenplace4==3:
+		if p4card>p2card and p4card>p3card and p4card>p1card:
+			Player4score=Player4score-1
+			Player4rscore=-1
+			tracker=1
+		if (p4card>p2card and p4card<p3card and p4card<p1card) or (p4card>p3card and p4card<p1card and p4card<p2card) or (p4card>p1card and p4card<p2card and p4card<p3card):
+			Player4score=Player4score+1
+			Player4rscore=1
+			tracker=1
+		if tracker==0:
+			Player4score=Player4score+0
+			Player4rscore=0
+	if chosenplace4==4:
+		if p4card<p2card and p4card<p3card and p4card<p1card:
+			Player4score=Player4score+1
+			Player4rscore=1
+			tracker=1
+		if (p4card>p2card and p4card<p3card and p4card<p1card) or (p4card>p3card and p4card<p1card and p4card<p2card) or (p4card>p1card and p4card<p2card and p4card<p3card):
+			Player4score=Player4score+0
+			Player4rscore=0
+			tracker=1
+		if tracker==0:
+			Player4score=Player4score-1
+			Player4rscore=-1
+
+
+
+def player2():
+	global turn_id
+	display_p4_num_of_cards(p4_card_list, p4_num_of_card)
+    	pygame.display.update()
+	turn_id=3
+def player3():
+	global turn_id
+	display_p3_num_of_cards(p3_card_list, p3_num_of_card)
+    	pygame.display.update()
+	turn_id=4
+def player4():
+	global turn_id
+	global Player1rscore
+	global Player2rscore
+	global Player3rscore
+	global Player4rscore
+	global chosenplace
+	Player2rscore=0
+	Player3rscore=0
+	Player4rscore=0
+	display_p2_num_of_cards(p2_card_list, p2_num_of_card)
+	pygame.display.update()
+	calculatescores()
+	screen.blit(background, (750, 300), pygame.Rect(750, 300, 200, 62))
+	screen.blit(write2("Results of Round"),(750,300))
+	pygame.display.update()
+	screen.blit(write2("Player 1:"),(750,325))
+	screen.blit(write2("Player 2:"),(750,350))
+	screen.blit(write2("Player 3:"),(750,375))
+	screen.blit(write2("Player 4:"),(750,400))
+	screen.blit(writenum2(Player1rscore),(840,325))
+	screen.blit(writenum2(Player2rscore),(840,350))
+	screen.blit(writenum2(Player3rscore),(840,375))
+	screen.blit(writenum2(Player4rscore),(840,400))
+	pygame.display.update()
+	turn_id=1
+	BACK=True
+    	while BACK==True:
+		for event in pygame.event.get():
+			if event.type==QUIT:
+				exit()
+			if event.type==KEYDOWN:
+				if event.key==27:
+					DisplayScores(1)
+					DisplayChoices(chosenplace)
+					player4()
+				if event.key==K_n:
+					newgame()
+				if event.key==K_SPACE:
+					instructions(1)
+					DisplayChoices(chosenplace)
+					player4()
+			if event.type==MOUSEBUTTONDOWN:
+				BACK=False
+				clicked=True
+	nextround()
+def nextround():
+	global GameBegan
+	global DeckCounter
+	global index
+	global index2
+	global index3
+	global index4
+	global p2_card_list
+	global p3_card_list
+	global p4_card_list
+	global player_card_list
+	if DeckCounter>0:
+		GameBegan=1
+		screen.blit(background, (0,0))
+		player_card_list[index]=CardsInDeck[DeckCounter-1]
+		p2_card_list[index2]=CardsInDeck[DeckCounter-2]
+		p3_card_list[index3]=CardsInDeck[DeckCounter-3]
+		p4_card_list[index4]=CardsInDeck[DeckCounter-4]
+		DeckCounter=DeckCounter-4
+		display_all()
+		screen.blit(write2("Press Space to Review Instructions"),(10,10))
+		screen.blit(write2("Press ESC to see who is winning"),(10,35))
+		screen.blit(write2("Press n to start a new game"),(10,60))
+		pygame.display.update()
+		time.sleep(1)
+		begin=-1
+	else:
+		DisplayEndGameScores()
+def ShowCard(speed,card_index):
+    global player_card_rect
+    global num_of_card
+    screen.blit(num_to_cards(player_card_list[card_index]), (player_card_rect[card_index][0]+60*card_index+100, player_card_rect[card_index][1]))
+    pygame.display.update()
+
 def main():
     newgame()
     global begin
@@ -1570,8 +2865,6 @@ def main():
     global p2_card_rect     
     global p3_card_rect     
     global p4_card_rect     
-    global desktop_card_list
-    global desktop_card_rect
     global p2_card_list     
     global p3_card_list     
     global p4_card_list     
@@ -1603,14 +2896,13 @@ def main():
     global p2_num_of_card  
     global p3_num_of_card  
     global p4_num_of_card  
-    global num_of_desktop_card 
+ 
     
     
     global start_turn_id 
     global owner         
     global screen_width, screen_height
     
-    global winner
     
     while begin > 0:
         for event in pygame.event.get():
@@ -1618,16 +2910,21 @@ def main():
                 exit()
 	    if event.type==KEYDOWN:
 		if event.key==27:
-			DisplayScores() #modify to exit
+			DisplayScores(0)
 		if event.key==K_n:
 			newgame()
 		if event.key==K_SPACE:
-			instructions()			
+			instructions(0)
+			
             if event.type == MOUSEBUTTONDOWN and begin >0:
                 if event.button == 1 and turn_id == 1:
                     CardClicked(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-		    ChoosePlace()
-		    turn_id=2
+	if turn_id==2 and clicked==True:
+		player2()
+	if turn_id==3:
+		player3()
+	if turn_id==4:
+		player4()	    
     exit()
 		
 if __name__ == "__main__":
