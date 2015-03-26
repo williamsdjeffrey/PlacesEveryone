@@ -134,6 +134,10 @@ Back_Card90 = pygame.transform.rotate(Back_Card , 90)
 Back_Cardn90 = pygame.transform.rotate(Back_Card , -90)
 
 screen_width, screen_height = SCREEN_SIZE
+laserfire=pygame.mixer.Sound("Sound\saucerexplode.WAV")
+laserfire.set_volume(0.4)
+soundcounter=0
+laserfire.play()
 def display_all():
     global player_card_x
     global player_card_rect
