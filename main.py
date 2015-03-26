@@ -1,9 +1,18 @@
+#!/usr/bin/python
 import random, os
 import time 
 import sys
 import pygame
 from pygame.locals import *
 from sys import exit
+if not pygame.mixer: print "No sound system detected."
+pygame.mixer.init(44100)
+StartSound = pygame.mixer.Sound(os.path.join("sounds","shuffle.wav"))
+ClickSound = pygame.mixer.Sound(os.path.join("sounds","click.wav"))
+cardflipsound = pygame.mixer.Sound(os.path.join("sounds","cardflip.wav"))
+cheersound = pygame.mixer.Sound(os.path.join("sounds","cheer.wav"))
+youlose = pygame.mixer.Sound(os.path.join("sounds","gameover.wav"))
+#Sound2 = pygame.mixer.music.load(os.path.join("sounds","shuffle.wav"))
 background_image_filename = 'Image/blue.jpg'
 iP_1c = 'Image/01c.gif'
 iP_1d = 'Image/01d.gif'
