@@ -632,7 +632,18 @@ def newgame():
 				else:
 					GameBegan=1
 					BACK=False
-	initializeGame()				
+	initializeGame()
+def difficultySelected(xcoordinate,ycoordinate):
+	difficulty=0
+	if 700<xcoordinate<867 and 425<ycoordinate<450:
+		difficulty=1
+	if 700<xcoordinate<867 and 450<ycoordinate<475:
+		difficulty=2
+	if 700<xcoordinate<867 and 475<ycoordinate<500:
+		difficulty=3
+	if 700<xcoordinate<880 and 500<ycoordinate<525:
+		difficulty=4
+	return difficulty
 def initializeGame():
     global index
     index=-1
