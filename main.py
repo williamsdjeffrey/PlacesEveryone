@@ -13,6 +13,7 @@ cardflipsound = pygame.mixer.Sound(os.path.join("sounds","cardflip.wav"))
 cheersound = pygame.mixer.Sound(os.path.join("sounds","cheer.wav"))
 youlose = pygame.mixer.Sound(os.path.join("sounds","gameover.wav"))
 #Sound2 = pygame.mixer.music.load(os.path.join("sounds","shuffle.wav"))
+#load in images
 background_image_filename = 'Image/blue.jpg'
 iP_1c = 'Image/01c.gif'
 iP_1d = 'Image/01d.gif'
