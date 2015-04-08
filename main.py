@@ -2398,6 +2398,88 @@ highercard4=suit4
 								highercard3=3
 								highercard4=2
 #########################################################part 12##########################################################
+							if highercard4>highercard3:
+								highercard2=4
+								highercard3=2
+								highercard4=3
+						if highercard3>highercard2 and highercard3>highercard4:
+							if highercard2>highercard4:
+								highercard2=3
+								highercard3=4
+								highercard4=2
+							if highercard4>highercard2:
+								highercard2=2
+								highercard3=4
+								highercard4=3
+						if highercard4>highercard2 and highercard4>highercard3:
+							if highercard2>highercard3:
+								highercard2=3
+								highercard3=2
+								highercard4=4
+							if highercard3>highercard2:
+								highercard2=2
+								highercard3=3
+								highercard4=4
+		if highercard1==highercard2 and highercard1==highercard3 and highercard1==highercard4:
+			highercard1=CardClicked2(1)
+			DeckCounter=DeckCounter-1
+			highercard2=computertiecard(0,1)
+			DeckCounter=DeckCounter-1
+			highercard3=computertiecard(1,1)
+			DeckCounter=DeckCounter-1
+			highercard4=computertiecard(2,1)
+			DeckCounter=DeckCounter-1
+			if highercard1==highercard2 and highercard1==highercard3 and highercard1!=highercard4:
+			#####1,2,3######
+				if highercard4>highercard1:
+					highercard4=5
+				else:
+					highercard4=0
+				highercard1=CardClicked2(2)
+				highercard2=computertiecard(0,2)
+				highercard3=computertiecard(1,2)
+				if highercard1==highercard2 and highercard1!=highercard3:
+					if highercard3>highercard1:
+						highercard3=4
+					else:
+						highercard3=1
+					highercard1=CardClicked2(3)
+					DeckCounter=DeckCounter-1
+					highercard2=computertiecard(0,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard2:
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard2=suit2
+						if highercard1>highercard2:
+							highercard1=3
+							highercard2=2
+						else:
+							highercard1=2
+							highercard2=3
+				if highercard1==highercard3 and highercard1!=highercard2:
+					if highercard2>highercard1:
+						highercard2=4
+					else:
+						highercard2=1
+					highercard1=CardClicked2(3)
+					DeckCounter=DeckCounter-1
+					highercard3=computertiecard(1,3)
+					DeckCounter=DeckCounter-1
+					if highercard1==highercard3:
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard3=suit3
+						if highercard1>highercard3:
+							highercard1=3
+							highercard3=2
+						else:
+							highercard1=2
+							highercard3=3
+				if highercard2==highercard3 and highercard2!=highercard1:
+					if highercard1>highercard2:
+						highercard1=4
+########################################################part 13##################################################
 		if highercard1>highercard2 and highercard1>highercard3 and highercard1>highercard4:
 			if highercard2>highercard3 and highercard2>highercard4:
 				if highercard3>highercard4:
