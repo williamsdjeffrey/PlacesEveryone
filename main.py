@@ -3057,6 +3057,87 @@ highercard4=suit4
 						highercard3=suit3
 						if highercard1>highercard3:
 #######################################################Part 20######################################################
+							highercard1=3
+							highercard3=2
+						else:
+							highercard1=2
+							highercard3=3
+					if highercard2==highercard3 and highercard2!=highercard1:
+						if highercard1>highercard2:
+							highercard1=4
+						else:
+							highercard1=1
+						####SUITS DECIDE########
+						highercard2=suit2
+						highercard3=suit3
+						if highercard2>highercard3:
+							highercard2=3
+							highercard3=2
+						else:
+							highercard2=2
+							highercard3=3
+					if highercard1==highercard2 and highercard1==highercard3:
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard2=suit2
+						highercard3=suit3
+						if highercard1>highercard2 and highercard1>highercard3:
+							if highercard2>highercard3:
+								highercard1=4
+								highercard2=3
+								highercard3=2
+							if highercard3>highercard2:
+								highercard1=4
+								highercard2=2
+								highercard3=3
+						if highercard2>highercard1 and highercard2>highercard3:
+							if highercard1>highercard3:
+								highercard1=3
+								highercard2=4
+								highercard3=2
+							if highercard3>highercard1:
+								highercard1=2
+								highercard2=4
+								highercard3=3
+						if highercard3>highercard1 and highercard3>highercard2:
+							if highercard1>highercard2:
+								highercard1=3
+								highercard2=2
+								highercard3=4
+							if highercard2>highercard1:
+								highercard1=2
+								highercard2=3
+								highercard3=4
+
+				if highercard1==highercard2 and highercard1==highercard4 and highercard1!=highercard3:
+				#####1,2,4######
+					if highercard3>highercard1:
+						highercard3=5
+					else:
+						highercard3=0
+
+					highercard1=CardClicked2(3)
+					highercard2=computertiecard(0,3)
+					highercard4=computertiecard(2,3)
+					if highercard1==highercard2 and highercard1!=highercard4:
+						if highercard4>highercard1:
+							highercard4=4
+						else:
+							highercard4=1
+						####SUITS DECIDE########
+						highercard1=suit
+						highercard2=suit2
+						if highercard1>highercard2:
+							highercard1=3
+							highercard2=2
+						else:
+							highercard1=2
+							highercard2=3
+					if highercard1==highercard4 and highercard1!=highercard2:
+						if highercard2>highercard1:
+							highercard2=4
+						else:
+#######################################################Part 21#####################################################################		
 		if highercard1>highercard2 and highercard1>highercard3 and highercard1>highercard4:
 			if highercard2>highercard3 and highercard2>highercard4:
 				if highercard3>highercard4:
