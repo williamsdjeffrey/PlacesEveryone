@@ -3377,7 +3377,94 @@ highercard4=suit4
 							highercard4=5
 						else:
 							highercard4=0
-#########################################################Part 24############################################################	
+#########################################################Part 24############################################################
+						highercard1=suit
+						highercard2=suit2
+						highercard3=suit3
+						if highercard1>highercard2 and highercard1>highercard3:
+							if highercard2>highercard3:
+								highercard1=4
+								highercard2=3
+								highercard3=2
+							if highercard3>highercard2:
+								highercard1=4
+								highercard2=2
+								highercard3=3
+						if highercard2>highercard1 and highercard2>highercard3:
+							if highercard1>highercard3:
+								highercard1=3
+								highercard2=4
+								highercard3=2
+							if highercard3>highercard1:
+								highercard1=2
+								highercard2=4
+								highercard3=3
+						if highercard3>highercard1 and highercard3>highercard2:
+							if highercard1>highercard2:
+								highercard1=3
+								highercard2=2
+								highercard3=4
+							if highercard2>highercard1:
+								highercard1=2
+								highercard2=3
+								highercard3=4
+					if highercard1==highercard2 and highercard1==highercard4 and highercard1!=highercard3:
+					#####1,2,4######
+						if highercard3>highercard1:
+							highercard3=5
+						else:
+							highercard3=0
+						highercard1=suit
+						highercard2=suit2
+						highercard4=suit4
+						if highercard1>highercard2 and highercard1>highercard4:
+							if highercard2>highercard4:
+								highercard1=4
+								highercard2=3
+								highercard4=2
+							if highercard4>highercard2:
+								highercard1=4
+								highercard2=2
+								highercard4=3
+						if highercard2>highercard1 and highercard2>highercard4:
+							if highercard1>highercard4:
+								highercard1=3
+								highercard2=4
+								highercard4=2
+							if highercard4>highercard1:
+								highercard1=2
+								highercard2=4
+								highercard4=3
+						if highercard4>highercard1 and highercard4>highercard2:
+							if highercard1>highercard2:
+								highercard1=3
+								highercard2=2
+								highercard4=4
+							if highercard2>highercard1:
+								highercard1=2
+								highercard2=3
+								highercard4=4
+
+					if highercard1==highercard3 and highercard1==highercard4 and highercard1!=highercard2:
+					#####1,3,4######
+						if highercard3>highercard1:
+							highercard3=5
+						else:
+							highercard3=0
+						highercard1=suit
+						highercard3=suit3
+						highercard4=suit4
+						if highercard1>highercard3 and highercard1>highercard4:
+							if highercard3>highercard4:
+								highercard1=4
+								highercard3=3
+								highercard4=2
+							if highercard4>highercard3:
+								highercard1=4
+								highercard3=2
+								highercard4=3
+						if highercard3>highercard1 and highercard3>highercard4:
+##################################################Part 25#################################################################	
 		if highercard1>highercard2 and highercard1>highercard3 and highercard1>highercard4:
 			if highercard2>highercard3 and highercard2>highercard4:
 				if highercard3>highercard4:
